@@ -57,12 +57,16 @@ package MS {
     * a building block that you want to add to the marker.
     */
   @JSName("MS.bbox")
-  @js.native
-  class BoundingBox(val x1: Double, val y1: Double, val x2: Double, val y2: Double) extends js.Object {
+  @ScalaJSDefined
+  trait BoundingBox extends js.Object {
+    var x1: Double
+    var y1: Double
+    var x2: Double
+    var y2: Double
 
-    def height(): Double = js.native
+    def height(): Double
 
-    def width(): Double = js.native
+    def width(): Double
   }
 
   /**
@@ -70,8 +74,12 @@ package MS {
     * It consists of two JSON geometries, and a bounding box for the geometries.
     */
   @JSName("MS.buildingBlock")
-  @js.native
-  class BuildingBlock(val pre: JSGeometry, val post: JSGeometry, val bbox: BoundingBox) extends js.Object
+  @ScalaJSDefined
+  trait BuildingBlock extends js.Object {
+    var pre: JSGeometry
+    var post: JSGeometry
+    var bbox: BoundingBox
+  }
 
   /**
     * The stroke-dasharray attribute controls the pattern of dashes and gaps used to stroke paths on a SVG geometry.
@@ -91,15 +99,13 @@ package MS {
     * so that you will be able to get it using MS.getColorMode().
     */
   @JSName("MS.colorMode")
-  @js.native
-  class ColorMode protected() extends js.Object {
-    def this(civilian: String, friend: String, hostile: String, neutral: String, unknown: String) = this()
-
-    var Civilian: String = js.native
-    var Friend: String = js.native
-    var Hostile: String = js.native
-    var Neutral: String = js.native
-    var Unknown: String = js.native
+  @ScalaJSDefined
+  trait ColorMode extends js.Object {
+    var Civilian: String
+    var Friend: String
+    var Hostile: String
+    var Neutral: String
+    var Unknown: String
   }
 
   /**
@@ -245,7 +251,7 @@ package MS {
 
     def buildingBlock(pre: JSGeometry, post: JSGeometry, bbox: BoundingBox): BuildingBlock = js.native
 
-    def bbox(box: BoundingBox): BoundingBox = js.native
+    def bbox(): BoundingBox = js.native
 
     def colorMode(civilian: String, friend: String, hostile: String, neutral: String, unknown: String): ColorMode = js.native
 
