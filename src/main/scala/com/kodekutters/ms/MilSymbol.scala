@@ -4,8 +4,8 @@ package com.kodekutters.ms
   * Scala.js façade to SPATIAL ILLUSIONS milsymbol.js
   *
   * from ref: [[http://spatialillusions.com/milsymbol/]]
-  *   milsymbol is a library in pure javascript that creates SVG symbols according to MIL-STD-2525C,
-  *   MIL-STD-2525D and NATO STANAG APP6(b). Since version 0.5.5 native canvas output is supported as well as SVG.
+  * milsymbol is a library in pure javascript that creates SVG symbols according to MIL-STD-2525C,
+  * MIL-STD-2525D and NATO STANAG APP6(b). Since version 0.5.5 native canvas output is supported as well as SVG.
   *
   * Note milsymbol.js BSD license.
   */
@@ -33,23 +33,23 @@ package MS {
   }
 
   /**
-    * a JSON geometry todo use js.Any for now
+    * a JSON geometry todo is this correct?
     */
-//  @ScalaJSDefined
-//  trait JSGeometry extends js.Object {
-//    /** "path" or "circle" */
-//    var `type`: String
-//    var d: String
-//    var cx: String
-//    var cy: String
-//    var r: String
-//    var fill: Boolean
-//    var stroke: Color
-//    var strokewidth: Double
-//    var strokedasharray: DashArrays
-//
-//    var bbox: BoundingBox
-//  }
+  @ScalaJSDefined
+  trait JSGeometry extends js.Object {
+    /** "path" or "circle" */
+    var `type`: String
+    var d: String
+    var cx: String
+    var cy: String
+    var r: String
+    var fill: Boolean
+    var stroke: Color
+    var strokewidth: Double
+    var strokedasharray: DashArrays
+
+    var bbox: BoundingBox
+  }
 
   /**
     * The bounding box object tells you the dimensions for a marker or a building block object.
@@ -57,15 +57,12 @@ package MS {
     * a building block that you want to add to the marker.
     */
   @JSName("MS.bbox")
-  @ScalaJSDefined
-  trait BoundingBox extends js.Object {
-    var x1: Double
-    var x2: Double
-    var y1: Double
-    var y2: Double
+  @js.native
+  class BoundingBox(val x1: Double, val y1: Double, val x2: Double, val y2: Double) extends js.Object {
 
-    def height(): Double
-    def width(): Double
+    def height(): Double = js.native
+
+    def width(): Double = js.native
   }
 
   /**
@@ -73,18 +70,14 @@ package MS {
     * It consists of two JSON geometries, and a bounding box for the geometries.
     */
   @JSName("MS.buildingBlock")
-  @ScalaJSDefined
-  trait BuildingBlock extends js.Object {
-    var pre: js.Any
-    var post: js.Any
-    var bbox: BoundingBox
-  }
+  @js.native
+  class BuildingBlock(val pre: JSGeometry, val post: JSGeometry, val bbox: BoundingBox) extends js.Object
 
   /**
     * The stroke-dasharray attribute controls the pattern of dashes and gaps used to stroke paths on a SVG geometry.
     * Each property on the Dash object represent a stroke-dasharray used in milsymbol.
     */
-  @JSName("MS.getDashArrays")
+  @JSName("MS.dashArrays")
   @ScalaJSDefined
   trait DashArrays extends js.Object {
     var pending: String
@@ -102,7 +95,7 @@ package MS {
   class ColorMode protected() extends js.Object {
     def this(civilian: String, friend: String, hostile: String, neutral: String, unknown: String) = this()
 
-    var Civilian: String = js.native  // the color of civilian
+    var Civilian: String = js.native
     var Friend: String = js.native
     var Hostile: String = js.native
     var Neutral: String = js.native
@@ -155,7 +148,7 @@ package MS {
     var functionid: String
     var mobility: String
     var notpresent: String
-    var baseGeometry: js.Any
+    var baseGeometry: JSGeometry
     var iconBottom: Double
   }
 
@@ -250,9 +243,9 @@ package MS {
 
     def getDashArrays(): DashArrays = js.native
 
-    def buildingBlock(pre: js.Any, post: js.Any, bbox: BoundingBox): BuildingBlock = js.native
+    def buildingBlock(pre: JSGeometry, post: JSGeometry, bbox: BoundingBox): BuildingBlock = js.native
 
-    def bbox(): BoundingBox = js.native
+    def bbox(box: BoundingBox): BoundingBox = js.native
 
     def colorMode(civilian: String, friend: String, hostile: String, neutral: String, unknown: String): ColorMode = js.native
 
@@ -274,11 +267,11 @@ package MS {
 
     def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
-    def translate(x: Double, y: Double, instruction: js.Any): js.Any = js.native
+    def translate(x: Double, y: Double, geom: JSGeometry): JSGeometry = js.native
 
-    def rotate(angle: Double, instruction: js.Any): js.Any = js.native
+    def rotate(angle: Double, geom: JSGeometry): JSGeometry = js.native
 
-    def scale(factor: Double, instruction: js.Any): js.Any = js.native
+    def scale(factor: Double, geom: JSGeometry): JSGeometry = js.native
   }
 
   /**
