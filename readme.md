@@ -16,7 +16,19 @@ See the build.sbt file.
 
 ## Installation and packaging
 
+To compile and generate a jar file from the source code:
 
+    sbt package
+
+The jar file (scalams_sjs0.6_2.11-0.1-SNAPSHOT.jar) will be in the "./target/scala-2.11" directory.
+
+To publish **ScalaMS** to your local (Ivy) repository, simply type:
+
+    sbt publishLocal
+    
+Then put this in your build.sbt
+
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.1-SNAPSHOT"
 
 ## Status
 
