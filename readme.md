@@ -30,6 +30,9 @@ Then put this in your build.sbt file
 
     libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.1-SNAPSHOT"
 
+See also [CesiumMil](https://github.com/workingDog/CesiumMil) for a basic example of using 
+[ScalaMS](https://github.com/workingDog/ScalaMS) and [CesiumScala](https://github.com/workingDog/CesiumScala)
+
 ## Status
 
 just starting
