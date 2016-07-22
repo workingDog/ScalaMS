@@ -41,7 +41,7 @@
 //        position(Cartesian3.fromDegrees(-75.59777, 40.03883)).
 //        billboard(new BillboardGraphics(
 //          BillboardGraphicsOptions.
-//            image(sym.getMarker().asCanvas()). // <--- the bilboard image is the symbol
+//            image(sym.getMarker().asCanvas()). // <--- the billboard image is the symbol
 //            show(true).
 //            scale(2.0).
 //            color(Color.LIME).
