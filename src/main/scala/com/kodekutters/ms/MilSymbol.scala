@@ -9,7 +9,6 @@ package com.kodekutters.ms
   *
   * Note milsymbol.js BSD license.
   */
-package MS {
 
   import org.querki.jsext.{JSOptionBuilder, _}
 
@@ -359,6 +358,3 @@ package MS {
 
     def commonIdentifier(v: String) = jsOpt("commonIdentifier", v)
   }
-
-
-}
