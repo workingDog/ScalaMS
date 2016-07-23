@@ -157,7 +157,6 @@ trait Properties extends js.Object {
   var iconBottom: Double
 }
 
-
 /**
   * the Symbol options
   */
@@ -213,7 +212,7 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 
   def iffSif(v: String) = jsOpt("iffSif", v)
 
-  def direction(v: String) = jsOpt("direction", v)
+  def direction(v: Double) = jsOpt("direction", v)
 
   def sigint(v: String) = jsOpt("sigint", v)
 
@@ -297,7 +296,7 @@ class Symbol protected() extends js.Object {
   var higherFormation: String = js.native
   var hostile: String = js.native
   var iffSif: String = js.native
-  var direction: String = js.native
+  var direction: Double = js.native
   var sigint: String = js.native
   var uniqueDesignation: String = js.native
   var `type`: String = js.native
