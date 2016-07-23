@@ -9,7 +9,6 @@ MIL-STD-2525D and NATO STANAG APP6(b).
  
 1) [milsymbol.js](https://github.com/spatialillusions/milsymbol)
 
-
 ## Dependencies
 
 See the build.sbt file.
@@ -35,5 +34,5 @@ See also [CesiumMil](https://github.com/workingDog/CesiumMil) for a basic exampl
 
 ## Status
 
-just starting
+work in progress
 

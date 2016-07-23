@@ -5,7 +5,7 @@ package com.kodekutters.ms
   *
   * from ref: [[http://spatialillusions.com/milsymbol/]]
   * milsymbol is a library in pure javascript that creates SVG symbols according to MIL-STD-2525C,
-  * MIL-STD-2525D and NATO STANAG APP6(b). Since version 0.5.5 native canvas output is supported as well as SVG.
+  * MIL-STD-2525D and NATO STANAG APP6(b).
   *
   * Note milsymbol.js BSD license.
   */
