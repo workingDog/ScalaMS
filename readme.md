@@ -15,11 +15,12 @@ See the build.sbt file.
 
 ## Installation and packaging
 
-To compile and generate a jar file from the source code:
+To compile and generate a javascript file from the source code:
 
-    sbt package
+    sbt fullOptJS 
 
-The jar file (scalams_sjs0.6_2.11-0.1-SNAPSHOT.jar) will be in the "./target/scala-2.11" directory.
+The javascript file (scalams-opt.js) will be in the "./target/scala-2.11" directory.
+
 
 To publish **ScalaMS** to your local (Ivy) repository, simply type:
 
