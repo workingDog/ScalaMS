@@ -23,7 +23,7 @@ import scala.language.implicitConversions
 
 
 /**
-  * helper object representing an anchor point
+  * An anchor point
   */
 @ScalaJSDefined
 trait Anchor extends js.Object {
@@ -32,7 +32,7 @@ trait Anchor extends js.Object {
 }
 
 /**
-  * a JSON geometry todo is this correct?
+  * a JSON geometry
   */
 @ScalaJSDefined
 trait JSGeometry extends js.Object {
@@ -58,13 +58,19 @@ trait JSGeometry extends js.Object {
 @JSName("MS.bbox")
 @ScalaJSDefined
 trait BoundingBox extends js.Object {
+  /** The x value of the top left corner of the bounding box. */
   var x1: Double
+  /** The y value of the top left corner of the bounding box. */
   var y1: Double
+  /** The x value of the bottom right corner of the bounding box. */
   var x2: Double
+  /** The y value of the bottom right corner of the bounding box. */
   var y2: Double
 
+  /** This will get the height of the bouding box. */
   def height(): Double
 
+  /** This will get the width of the bouding box. */
   def width(): Double
 }
 
@@ -75,8 +81,11 @@ trait BoundingBox extends js.Object {
 @JSName("MS.buildingBlock")
 @ScalaJSDefined
 trait BuildingBlock extends js.Object {
+  /** This is the JSON geometry for the geometry we intend to draw. This part is inserted before any previous parts of the marker. */
   var pre: JSGeometry
+  /** This is the JSON geometry for the geometry we intend to draw. This part is inserted after any existing parts of the marker. */
   var post: JSGeometry
+  /** This is the bounding box for the SVG geometry, since javascript can't get the bounds of a SVG geometry until it has been drawn we need to calculate this manually. */
   var bbox: BoundingBox
 }
 
@@ -87,8 +96,11 @@ trait BuildingBlock extends js.Object {
 @JSName("MS.dashArrays")
 @ScalaJSDefined
 trait DashArrays extends js.Object {
+  /** The value for the stroke-dasharray used for markers with a pending status. */
   var pending: String
+  /** The value for the stroke-dasharray used for markers with a anticipated status */
   var anticipated: String
+  /** The value for the stroke-dasharray used for the feint/dummy modifier. */
   var feintDummy: String
 }
 
@@ -100,10 +112,15 @@ trait DashArrays extends js.Object {
 @JSName("MS.colorMode")
 @ScalaJSDefined
 trait ColorMode extends js.Object {
+  /** A color that is either a keyword or a numerical RGB specification. */
   var Civilian: String
+  /** A color that is either a keyword or a numerical RGB specification. */
   var Friend: String
+  /** A color that is either a keyword or a numerical RGB specification. */
   var Hostile: String
+  /** A color that is either a keyword or a numerical RGB specification. */
   var Neutral: String
+  /** A color that is either a keyword or a numerical RGB specification. */
   var Unknown: String
 }
 
@@ -114,12 +131,19 @@ trait ColorMode extends js.Object {
   */
 @ScalaJSDefined
 trait SymbolColor extends js.Object {
+  /** Marker fill color. */
   var fillColor: ColorMode
+  /** Marker frame color. */
   var frameColor: ColorMode
+  /** Icon color. */
   var iconColor: ColorMode
+  /** Icon fill color. */
   var iconFillColor: ColorMode
+  /** Transparent parts of the marker. */
   var none: ColorMode
+  /** Black parts of the marker. */
   var black: ColorMode
+  /** White parts of the marker. */
   var white: ColorMode
 }
 
@@ -130,30 +154,55 @@ trait SymbolColor extends js.Object {
   */
 @ScalaJSDefined
 trait Properties extends js.Object {
+  /** Is it an Activity */
   var activity: Boolean
+  /** Dimension it is shown as (Air/Ground...) for example Ground Equipment is shown with the same shape as Sea.  */
   var dimension: String
+  /** Affiliation it is shown as (Friend/Hostile...) for example a Faker Hostile, will be shown with the shape of Friends. */
   var affiliation: String
+  /** Dimension it belongs to (Air/Ground...)  */
   var baseDimension: String
+  /** Affiliation it belongs to (Friend/Hostile...) */
   var baseAffilation: String
+  /** Is it Civilian  */
   var civilian: Boolean
+  /** Is the dimension unknown  */
   var dimensionUnknown: Boolean
+  /** Is it a Faker  */
   var faker: Boolean
+  /** Is it a feint/dummy */
   var fenintDummy: Boolean
+  /** Standard says it should be filled  */
   var fill: Boolean
+  /** Standard says it should be framed  */
   var frame: Boolean
+  /** Is it a Headquarters  */
   var headquarters: Boolean
+  /** Is it an Instalation  */
   var installation: Boolean
+  /** Is it a Joker  */
   var joker: Boolean
+  /** Is the SIDC number based */
   var numberSIDC: Boolean
+  /** Is it in Space  */
   var space: Boolean
+  /** Is it a task force */
   var taskForce: Boolean
+  /** What condition is it in  */
   var condition: String
+  /** Context of the symbol (Reality/Exercise...)  */
   var context: String
+  /** What echelon (Platoon/Company...)  */
   var echelon: String
+  /** Part of SIDC referring to the icon.  */
   var functionid: String
+  /** What mobility (Tracked/Sled...)  */
   var mobility: String
+  /** Is it Anticipated or Pending  */
   var notpresent: String
+  /** Geometry is a combination of dimension and affiliation (AirFriend/GroundHostile...)  */
   var baseGeometry: JSGeometry
+  /** The bottom of the icon, this is only set for equipment symbols.  */
   var iconBottom: Double
 }
 
@@ -239,74 +288,149 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 
 /**
   * Symbol object with a SIDC, and optional symbol options
+  * The SIDC is a complete, letter based or number based, or at least the first 3 chars of a letter based SIDC.
   */
 @JSName("MS.symbol")
 @js.native
 class Symbol protected() extends js.Object {
   def this(SIDC: String, options: SymbolOptions = ???) = this()
 
+  /** This will update and return the Properties Object for the current marker. */
   def getProperties(): Properties = js.native
 
+  /** This will return an object with several named properties, where each property is a Color object. This represent all colors that can be used for the current marker. */
   def getColors(): SymbolColor = js.native
 
+  /* When the getMarker() method is called, all properties of the Symbol Object is updated (getMarker() calls getProperties() and getColors()) and a marker is composed by all marker parts. When this is done the Symbol Object itself is returned. */
   def getMarker(): Symbol = js.native
 
+  /** If you want to change the options of an existing symbol at the same time as you want to request it as a new marker,
+    * you can use setOptions(<Symbol options> options?) to update the options.
+    */
   def setOptions(options: SymbolOptions): Symbol = js.native
 
+  /** Parses the XML and returns a DOM element. */
   def asDOM(): dom.Element = js.native
 
+  /** Base 64 encodes the XML and returns the output as a SVG image stream that can be set as the source attribute on a image element. */
   def asImage(): String = js.native // base 64 string todo
 
+  /** Draws the marker to a canvas element using native draw instructions and returns the canvas element. */
   def asCanvas(): html.Canvas = js.native
 
+  /** This will return the SVG XML string and it will also be stored in the XML property, if autoSVG is set to true the will be called automatically when you call getMarker. */
   def asSVG(): String = js.native
 
   // properties
+  /** Contains the bounding box of the current marker */
   var bbox: BoundingBox = js.native
+  /** Contains the colors for the current marker */
   var colors: Array[ColorMode] = js.native
+  /** Height of the current marker */
   var height: Double = js.native
+  /** The anchor point for the current marker, this is usually the center of the octagon, but for headquarters it's the end of the staf. The coordinates are measured from the top left corner of the marker. */
   var markerAnchor: Anchor = js.native
+  /** The anchor point for the octagon for the current marker. The coordinates are measured from the top left corner of the marker.
+    */
   var octagonAnchor: Anchor = js.native
+  /** Properties of the current marker */
   var properties: Properties = js.native
+  /** Width of the current marker */
   var width: Double = js.native
+  /** XML-string for the current marker */
   var XML: String = js.native
 
-  // the main options
+  // the basic options
+  /** Should your symbol be filled with color. */
   var fill: Boolean = js.native
+  /** Should your symbol have a frame. All symbols support to be unframed, not just the ones specified in 2525B. */
   var frame: Boolean = js.native
+  /** Should your symbol have an icon. */
   var icon: Boolean = js.native
+  /** 2525C specifics purple as an optional color for civilian symbols. Of corse we like color so we set this as default.  */
   var civilianColor: Boolean = js.native
+  /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
   var infoFields: Boolean = js.native
+  /** MIL-STD-2525D lets you choose between MEDAL and alternate MEDAL icons for mine warefare symbols, the default in milsymbol is using MEDAL icons, but you can change this using setting this property to true. */
   var alternateMedal: Boolean = js.native
+  /** The opacity of the symbol fill color. */
   var fillOpacity: Double = js.native
+  /** The stroke width of the symbol. */
   var strokeWidth: Float = js.native
+  /** The L value for your symbol, where the L value is the width of the icon octagon.  */
   var size: Double = js.native
+  /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
   var colorMode: ColorMode = js.native
+  /** A color that is either a keyword or a numerical RGB specification. If you set this the symbol will be monochrome and unfilled using the color provided. */
   var monoColor: String = js.native
+  /** The size of the text fields surrounding the symbol. */
   var infoSize: Double = js.native
 
-  // information section
+  // information fields options
+  /** FieldID C
+    * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
   var quantity: String = js.native
+  /** FieldID F
+    * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
   var reinforcedReduced: String = js.native
+  /** FieldID G
+    * A text modifier for units, equipment and installations; content is implementation specific. 20 Characters */
   var staffComments: String = js.native
+  /** FieldID H
+    * A text modifier for units, equipment, and installations; content is implementation specific. 20 Characters  */
   var additionalInformation: String = js.native
+  /** FieldID J
+    * A text modifier for units, equipment, and installations that consists of a one-letter reliability rating and a one-number credibility rating. 2 Characters */
   var evaluationRating: String = js.native
+  /** FieldID K
+    * A text modifier for units and installations that indicates unit effectiveness or installation capability. 5 Characters */
   var combatEffectiveness: String = js.native
+  /** FieldID L
+    * A text modifier for hostile equipment; "!" indicates detectable electronic signatures. 1 Characters */
   var signatureEquipment: String = js.native
+  /** FieldID M
+    * A text modifier for units that indicates number or title of higher echelon command (corps are designated by Roman numerals). 21 Characters */
   var higherFormation: String = js.native
+  /** FieldID N
+    * A text modifier for equipment; letters "ENY" denote hostile symbols. 3 Characters */
   var hostile: String = js.native
+  /** FieldID P
+    * A text modifier displaying IFF/SIF Identification modes and codes. 5 Characters	 */
   var iffSif: String = js.native
+  /** FieldID Q, at the moment all directions should be in degrees and not in mils. Set to an empty string to remove the direction arrow. */
   var direction: Double = js.native
+  /** FieldID R2
+    * M = Mobile, S = Static, or U = Uncertain. */
   var sigint: String = js.native
+  /** FieldID T
+    * A text modifier for units, equipment, and installations that uniquely identifies a particular symbol or track number. Identifies acquisitions number when used with SIGINT symbology. 21 Characters */
   var uniqueDesignation: String = js.native
+  /** FieldID V
+    * A text modifier for equipment that indicates types of equipment. 24 Characters */
   var `type`: String = js.native
+  /** FieldID W
+    * A text modifier for units, equipment, and installations that displays DTG format: DDHHMMSSZMONYYYY or "O/O" for on order. 16 Characters */
   var dtg: String = js.native
+  /** FieldID X
+    * A text modifier for units, equipment, and installations, that displays either altitude flight level, depth for submerged objects; or height of equipment or structures on the ground. 14 Characters	 */
   var altitudeDepth: String = js.native
+  /** FieldID Y
+    * A text modifier for units, equipment, and installations that displays a symbol's location in degrees, minutes, and seconds (or in UTM or other applicable display format). 19 Characters */
   var location: String = js.native
+  /** FieldID Z
+    * A text modifier for units and equipment that displays velocity as set forth in MIL-STD-6040. 8 Characters	 */
   var speed: String = js.native
+  /** FieldID AA
+    * A text modifier for units; indicator is contained inside the frame; contains the name of the special C2 Headquarters. 9 Characters */
   var specialHeadquarters: String = js.native
+  /** FieldID AD
+    * "ELNOT" or "CENOT" */
   var platformType: String = js.native
+  /** FieldID AE
+    * Equipment teardown time in minutes. */
   var equipmentTeardownTime: String = js.native
+  /** FieldID AF
+    * Example: "Hawk" for Hawk SAM system. */
   var commonIdentifier: String = js.native
 }
 
@@ -317,44 +441,65 @@ class Symbol protected() extends js.Object {
 @js.native
 object MS extends js.Object {
 
+  /** Get the current version of milsymbol */
   val version: String = js.native
 
+  /** Gets or sets if milsymbol should generate SVG output by default, if you only plan on using Canvas you can set this to false. */
   var autoSVG: Boolean = js.native
 
   /** "2525" or "APP6" */
   def setStandard(symbology: String): Unit = js.native
 
+  /** Creates a new symbol object using the SIDC provided. */
   def symbol(SIDC: String, options: SymbolOptions = ???): Symbol = js.native
 
+  /** Gets the dash-arrays used in dashed symbols. */
   def getDashArrays(): DashArrays = js.native
 
+  /** Creates an object with two SVG geometry that creates a part of a milsymbol marker, and the bounding box for that geometry.
+    * The first SVG geometry is inserted before existing code and the second after.
+    */
   def buildingBlock(pre: JSGeometry, post: JSGeometry, bbox: BoundingBox): BuildingBlock = js.native
 
+  /** Initiates a basic bounding box for a geometry covering the symbol octagon. */
   def bbox(): BoundingBox = js.native
 
+  /** Creates a new color mode from an array of colors. */
   def colorMode(civilian: String, friend: String, hostile: String, neutral: String, unknown: String): ColorMode = js.native
 
+  /** Gets an color mode that has been registred with a name. */
   def getColorMode(mode: String): ColorMode = js.native
 
+  /** Register a color mode with a name. */
   def setColorMode(mode: String, color: ColorMode): ColorMode = js.native
 
+  /** Sets the dash-arrays used in dashed symbols. */
   def setDashArrays(pending: String, anticipated: String, feintDummy: String): DashArrays = js.native
 
+  /** This method gets the setting for how long the HQ staf should be, default it is one octagon (100) long. */
   def getHqStafLength(): Double = js.native
 
+  /** This method gets the setting for how long the HQ staf should be, you can set it to any number, but would recommend to keep it between 50 - 150. */
   def setHqStafLength(number: Double): Double = js.native
 
+  /** The max bounds of two bounding boxes. */
   def bboxMax(box1: BoundingBox, box2: BoundingBox): BoundingBox = js.native
 
+  /** Returns an array of functions where each function returns a building block for a marker. */
   def getMarkerParts(): Array[js.Function] = js.native
 
+  /** Adds a new function that returns a building block for a marker. This function will be added at the end of the marker parts array and therefor rendered on top of all other parts of the marker. This is an easy way to extend milsymbol. */
   def addMarkerParts(function: js.Function): Array[js.Function] = js.native
 
+  /** Sets a new array of function where each function returns a building block for a marker. You can use this if you want to add custom code between existing marker parts when you are extending milsymbol. */
   def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
+  /** Moves the JSON geometry in x,y direction. */
   def translate(x: Double, y: Double, geom: JSGeometry): JSGeometry = js.native
 
+  /** Rotates the JSON geometry. */
   def rotate(angle: Double, geom: JSGeometry): JSGeometry = js.native
 
+  /** Scales the JSON geometry. */
   def scale(factor: Double, geom: JSGeometry): JSGeometry = js.native
 }
