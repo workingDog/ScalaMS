@@ -13,7 +13,7 @@ MIL-STD-2525D and NATO STANAG APP6(b).
 
 See the build.sbt file.
 
-## Installation and packaging
+## Compiling and installation 
 
 To compile and generate a javascript file from the source code:
 
@@ -33,7 +33,18 @@ Then put this in your build.sbt file
 See also [CesiumMil](https://github.com/workingDog/CesiumMil) for a basic example of using 
 [ScalaMS](https://github.com/workingDog/ScalaMS) and [CesiumScala](https://github.com/workingDog/CesiumScala)
 
+## Documentations
+
+Refer to the original [overview](http://spatialillusions.com/milsymbol/index.html) documentation and 
+the [milsymbol API](http://www.spatialillusions.com/milsymbol/docs/index.html) documentation.
+
+To generate the Scala doc:
+    
+    sbt doc
+
+The Scala API doc will be in the "./target/scala-2.11/api" directory.
+
 ## Status
 
-work in progress
+usable
 

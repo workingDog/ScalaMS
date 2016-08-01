@@ -67,10 +67,10 @@ trait BoundingBox extends js.Object {
   /** The y value of the bottom right corner of the bounding box. */
   var y2: Double
 
-  /** This will get the height of the bouding box. */
+  /** The height of the bouding box. */
   def height(): Double
 
-  /** This will get the width of the bouding box. */
+  /** The width of the bouding box. */
   def width(): Double
 }
 
@@ -216,73 +216,130 @@ trait SymbolOptions extends js.Object
 object SymbolOptions extends SymbolOptionsBuilder(noOpts)
 
 class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptions, SymbolOptionsBuilder](new SymbolOptionsBuilder(_)) {
+  /** Should your symbol be filled with color. */
   def fill(v: Boolean) = jsOpt("fill", v)
 
+  /** Should your symbol have a frame. All symbols support to be unframed, not just the ones specified in 2525B. */
   def frame(v: Boolean) = jsOpt("frame", v)
 
+  /** Should your symbol have an icon. */
   def icon(v: Boolean) = jsOpt("icon", v)
 
+  /** 2525C specifics purple as an optional color for civilian symbols. Of corse we like color so we set this as default.  */
   def civilianColor(v: Boolean) = jsOpt("civilianColor", v)
 
+  /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
   def infoFields(v: Boolean) = jsOpt("infoFields", v)
 
+  /** MIL-STD-2525D lets you choose between MEDAL and alternate MEDAL icons for mine warefare symbols, the default in milsymbol is using MEDAL icons, but you can change this using setting this property to true. */
   def alternateMedal(v: Boolean) = jsOpt("alternateMedal", v)
 
+  /** The opacity of the symbol fill color. */
   def fillOpacity(v: Double) = jsOpt("fillOpacity", v)
 
+  /** The stroke width of the symbol. */
   def strokeWidth(v: Float) = jsOpt("strokeWidth", v)
 
+  /** The L value for your symbol, where the L value is the width of the icon octagon.  */
   def size(v: Double) = jsOpt("size", v)
 
+  /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
   def colorMode(v: ColorMode) = jsOpt("colorMode", v)
 
+  /** A color that is either a keyword or a numerical RGB specification. If you set this the symbol will be monochrome and unfilled using the color provided. */
   def monoColor(v: String) = jsOpt("monoColor", v)
 
+  /** The size of the text fields surrounding the symbol. */
   def infoSize(v: Double) = jsOpt("infoSize", v)
 
   // information section
+  /** FieldID C -
+    * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
   def quantity(v: String) = jsOpt("quantity", v)
 
+  /** FieldID F -
+    * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
   def reinforcedReduced(v: String) = jsOpt("reinforcedReduced", v)
 
+  /** FieldID G -
+    * A text modifier for units, equipment and installations; content is implementation specific. 20 Characters */
   def staffComments(v: String) = jsOpt("staffComments", v)
 
+  /** FieldID H -
+    * A text modifier for units, equipment, and installations; content is implementation specific. 20 Characters  */
   def additionalInformation(v: String) = jsOpt("additionalInformation", v)
 
+  /** FieldID J
+    * A text modifier for units, equipment, and installations that consists of a one-letter reliability rating and a one-number credibility rating. 2 Characters */
   def evaluationRating(v: String) = jsOpt("evaluationRating", v)
+
+  /** FieldID K -
+    * A text modifier for units and installations that indicates unit effectiveness or installation capability. 5 Characters */
 
   def combatEffectiveness(v: String) = jsOpt("combatEffectiveness", v)
 
+  /** FieldID L -
+    * A text modifier for hostile equipment; "!" indicates detectable electronic signatures. 1 Characters */
   def signatureEquipment(v: String) = jsOpt("signatureEquipment", v)
 
+  /** FieldID M -
+    * A text modifier for units that indicates number or title of higher echelon command (corps are designated by Roman numerals). 21 Characters */
   def higherFormation(v: String) = jsOpt("higherFormation", v)
 
+  /** FieldID N
+    * A text modifier for equipment; letters "ENY" denote hostile symbols. 3 Characters */
   def hostile(v: String) = jsOpt("hostile", v)
 
+  /** FieldID P -
+    * A text modifier displaying IFF/SIF Identification modes and codes. 5 Characters	 */
   def iffSif(v: String) = jsOpt("iffSif", v)
 
+  /** FieldID Q -  at the moment all directions should be in degrees and not in mils. Set to an empty string to remove the direction arrow. */
   def direction(v: Double) = jsOpt("direction", v)
+
+  /** FieldID R2 -
+    * M = Mobile, S = Static, or U = Uncertain. */
 
   def sigint(v: String) = jsOpt("sigint", v)
 
+  /** FieldID T -
+    * A text modifier for units, equipment, and installations that uniquely identifies a particular symbol or track number. Identifies acquisitions number when used with SIGINT symbology. 21 Characters */
   def uniqueDesignation(v: String) = jsOpt("uniqueDesignation", v)
 
+  /** FieldID V -
+    * A text modifier for equipment that indicates types of equipment. 24 Characters */
   def `type`(v: String) = jsOpt("type", v)
 
+  /** FieldID W -
+    * A text modifier for units, equipment, and installations that displays DTG format: DDHHMMSSZMONYYYY or "O/O" for on order. 16 Characters */
   def dtg(v: String) = jsOpt("dtg", v)
 
+  /** FieldID X -
+    * A text modifier for units, equipment, and installations, that displays either altitude flight level, depth for submerged objects; or height of equipment or structures on the ground. 14 Characters	 */
   def altitudeDepth(v: String) = jsOpt("altitudeDepth", v)
 
+  /** FieldID Y -
+    * A text modifier for units, equipment, and installations that displays a symbol's location in degrees, minutes, and seconds (or in UTM or other applicable display format). 19 Characters */
   def location(v: String) = jsOpt("location", v)
 
+  /** FieldID Z -
+    * A text modifier for units and equipment that displays velocity as set forth in MIL-STD-6040. 8 Characters	 */
   def speed(v: String) = jsOpt("speed", v)
 
+  /** FieldID AA -
+    * A text modifier for units; indicator is contained inside the frame; contains the name of the special C2 Headquarters. 9 Characters */
   def specialHeadquarters(v: String) = jsOpt("specialHeadquarters", v)
 
+  /** FieldID AD -
+    * "ELNOT" or "CENOT" */
   def platformType(v: String) = jsOpt("platformType", v)
 
+  /** FieldID AE -
+    * Equipment teardown time in minutes. */
   def equipmentTeardownTime(v: String) = jsOpt("equipmentTeardownTime", v)
 
+  /** FieldID AF -
+    * Example: "Hawk" for Hawk SAM system. */
   def commonIdentifier(v: String) = jsOpt("commonIdentifier", v)
 }
 
@@ -293,6 +350,7 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 @JSName("MS.symbol")
 @js.native
 class Symbol protected() extends js.Object {
+  /** constructor */
   def this(SIDC: String, options: SymbolOptions = ???) = this()
 
   /** This will update and return the Properties Object for the current marker. */
@@ -367,69 +425,69 @@ class Symbol protected() extends js.Object {
   var infoSize: Double = js.native
 
   // information fields options
-  /** FieldID C
+  /** FieldID C -
     * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
   var quantity: String = js.native
-  /** FieldID F
+  /** FieldID F -
     * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
   var reinforcedReduced: String = js.native
-  /** FieldID G
+  /** FieldID G -
     * A text modifier for units, equipment and installations; content is implementation specific. 20 Characters */
   var staffComments: String = js.native
-  /** FieldID H
+  /** FieldID H -
     * A text modifier for units, equipment, and installations; content is implementation specific. 20 Characters  */
   var additionalInformation: String = js.native
-  /** FieldID J
+  /** FieldID J -
     * A text modifier for units, equipment, and installations that consists of a one-letter reliability rating and a one-number credibility rating. 2 Characters */
   var evaluationRating: String = js.native
-  /** FieldID K
+  /** FieldID K -
     * A text modifier for units and installations that indicates unit effectiveness or installation capability. 5 Characters */
   var combatEffectiveness: String = js.native
-  /** FieldID L
+  /** FieldID L -
     * A text modifier for hostile equipment; "!" indicates detectable electronic signatures. 1 Characters */
   var signatureEquipment: String = js.native
-  /** FieldID M
+  /** FieldID M -
     * A text modifier for units that indicates number or title of higher echelon command (corps are designated by Roman numerals). 21 Characters */
   var higherFormation: String = js.native
-  /** FieldID N
+  /** FieldID N -
     * A text modifier for equipment; letters "ENY" denote hostile symbols. 3 Characters */
   var hostile: String = js.native
-  /** FieldID P
+  /** FieldID P -
     * A text modifier displaying IFF/SIF Identification modes and codes. 5 Characters	 */
   var iffSif: String = js.native
-  /** FieldID Q, at the moment all directions should be in degrees and not in mils. Set to an empty string to remove the direction arrow. */
+  /** FieldID Q -  at the moment all directions should be in degrees and not in mils. Set to an empty string to remove the direction arrow. */
   var direction: Double = js.native
-  /** FieldID R2
+  /** FieldID R2 -
     * M = Mobile, S = Static, or U = Uncertain. */
   var sigint: String = js.native
-  /** FieldID T
+  /** FieldID T -
     * A text modifier for units, equipment, and installations that uniquely identifies a particular symbol or track number. Identifies acquisitions number when used with SIGINT symbology. 21 Characters */
   var uniqueDesignation: String = js.native
-  /** FieldID V
+  /** FieldID V -
     * A text modifier for equipment that indicates types of equipment. 24 Characters */
   var `type`: String = js.native
-  /** FieldID W
+  /** FieldID W -
     * A text modifier for units, equipment, and installations that displays DTG format: DDHHMMSSZMONYYYY or "O/O" for on order. 16 Characters */
   var dtg: String = js.native
-  /** FieldID X
+  /** FieldID X -
     * A text modifier for units, equipment, and installations, that displays either altitude flight level, depth for submerged objects; or height of equipment or structures on the ground. 14 Characters	 */
   var altitudeDepth: String = js.native
-  /** FieldID Y
+  /** FieldID Y -
     * A text modifier for units, equipment, and installations that displays a symbol's location in degrees, minutes, and seconds (or in UTM or other applicable display format). 19 Characters */
   var location: String = js.native
-  /** FieldID Z
+  /** FieldID Z -
     * A text modifier for units and equipment that displays velocity as set forth in MIL-STD-6040. 8 Characters	 */
   var speed: String = js.native
-  /** FieldID AA
+  /** FieldID AA -
     * A text modifier for units; indicator is contained inside the frame; contains the name of the special C2 Headquarters. 9 Characters */
   var specialHeadquarters: String = js.native
-  /** FieldID AD
+  /** FieldID AD -
     * "ELNOT" or "CENOT" */
   var platformType: String = js.native
-  /** FieldID AE
+  /** FieldID AE -
     * Equipment teardown time in minutes. */
   var equipmentTeardownTime: String = js.native
-  /** FieldID AF
+  /** FieldID AF -
     * Example: "Hawk" for Hawk SAM system. */
   var commonIdentifier: String = js.native
 }
