@@ -29,21 +29,94 @@ trait Anchor extends js.Object {
 }
 
 /**
-  * a JSON geometry
+  * a generic JSON geometry
   */
-@ScalaJSDefined
-trait JSGeometry extends js.Object {
-  /** "path" or "circle" */
-  var `type`: String
-  var d: String
-  var cx: String
-  var cy: String
-  var r: String
-  var fill: Boolean
-  var stroke: Color
-  var strokewidth: Double
-  var strokedasharray: DashArrays
-  var bbox: BoundingBox
+@js.native
+trait JSONGeometry extends js.Object {
+  /** one of: svg, path, circle, text, translate, rotate, scale */
+  var `type`: String = js.native
+  var bbox: BoundingBox = js.native
+}
+
+/**
+  * a svg geometry
+  */
+@js.native
+trait SVGGeom extends JSONGeometry {
+  var svg: String = js.native
+}
+
+/**
+  * a path geometry
+  */
+@js.native
+trait PathGeom extends JSONGeometry {
+  var d: String = js.native
+  var fill: String = js.native
+  var fillopacity: Double = js.native
+  var stroke: String = js.native
+  var strokewidth: Double = js.native
+  var strokedasharray: DashArrays = js.native
+}
+
+/**
+  * a circle geometry
+  */
+@js.native
+trait CircleGeom extends JSONGeometry {
+  var cx: String = js.native
+  var cy: String = js.native
+  var r: String = js.native
+  var fill: String = js.native
+  var fillopacity: Double = js.native
+  var stroke: String = js.native
+  var strokewidth: Double = js.native
+  var strokedasharray: DashArrays = js.native
+}
+
+/**
+  * a text geometry
+  */
+@js.native
+trait TextGeom extends JSONGeometry {
+  var x: Int = js.native
+  var y: Int = js.native
+  var textanchor: String = js.native
+  var fontsize: Int = js.native
+  var fontfamily: String = js.native
+  var fontweight: String = js.native
+  var fill: String = js.native
+  var fillopacity: Double = js.native
+  var stroke: String = js.native
+  var strokewidth: Double = js.native
+  var strokedasharray: DashArrays = js.native
+}
+
+/**
+  * a translate geometry
+  */
+@js.native
+trait TranslateGeom extends JSONGeometry {
+  var x: Int = js.native
+  var y: Int = js.native
+}
+
+/**
+  * a rotate geometry
+  */
+@js.native
+trait RotateGeom extends JSONGeometry {
+  var degree: Double = js.native
+  var x: Int = js.native
+  var y: Int = js.native
+}
+
+/**
+  * a scale geometry
+  */
+@js.native
+trait ScaleGeom extends JSONGeometry {
+  var factor: Double = js.native
 }
 
 /**
@@ -78,9 +151,9 @@ trait BoundingBox extends js.Object {
 @ScalaJSDefined
 trait BuildingBlock extends js.Object {
   /** This is the JSON geometry for the geometry we intend to draw. This part is inserted before any previous parts of the marker. */
-  var pre: JSGeometry
+  var pre: JSONGeometry
   /** This is the JSON geometry for the geometry we intend to draw. This part is inserted after any existing parts of the marker. */
-  var post: JSGeometry
+  var post: JSONGeometry
   /** This is the bounding box for the SVG geometry, since javascript can't get the bounds of a SVG geometry until it has been drawn we need to calculate this manually. */
   var bbox: BoundingBox
 }
@@ -197,7 +270,7 @@ trait Properties extends js.Object {
   /** Is it Anticipated or Pending  */
   var notpresent: String
   /** Geometry is a combination of dimension and affiliation (AirFriend/GroundHostile...)  */
-  var baseGeometry: JSGeometry
+  var baseGeometry: JSONGeometry
   /** The bottom of the icon, this is only set for equipment symbols.  */
   var iconBottom: Double
 }
@@ -509,7 +582,7 @@ object MS extends js.Object {
   /** Creates an object with two SVG geometry that creates a part of a milsymbol marker, and the bounding box for that geometry.
     * The first SVG geometry is inserted before existing code and the second after.
     */
-  def buildingBlock(pre: JSGeometry, post: JSGeometry, bbox: BoundingBox): BuildingBlock = js.native
+  def buildingBlock(pre: JSONGeometry, post: JSONGeometry, bbox: BoundingBox): BuildingBlock = js.native
 
   /** Initiates a basic bounding box for a geometry covering the symbol octagon. */
   def bbox(): BoundingBox = js.native
@@ -545,11 +618,11 @@ object MS extends js.Object {
   def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
   /** Moves the JSON geometry in x,y direction. */
-  def translate(x: Double, y: Double, geom: JSGeometry): JSGeometry = js.native
+  def translate(x: Double, y: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** Rotates the JSON geometry. */
-  def rotate(angle: Double, geom: JSGeometry): JSGeometry = js.native
+  def rotate(angle: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** Scales the JSON geometry. */
-  def scale(factor: Double, geom: JSGeometry): JSGeometry = js.native
+  def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
 }
