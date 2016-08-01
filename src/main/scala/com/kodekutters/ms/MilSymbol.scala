@@ -11,14 +11,11 @@ package com.kodekutters.ms
   */
 
 import org.querki.jsext.{JSOptionBuilder, _}
-
 import scala.scalajs.js
 import scala.scalajs.js.annotation._
 import scala.scalajs.js.{Promise => _, _}
-
 import org.scalajs.dom
 import org.scalajs.dom.html
-
 import scala.language.implicitConversions
 
 
@@ -46,7 +43,6 @@ trait JSGeometry extends js.Object {
   var stroke: Color
   var strokewidth: Double
   var strokedasharray: DashArrays
-
   var bbox: BoundingBox
 }
 
@@ -275,7 +271,6 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 
   /** FieldID K -
     * A text modifier for units and installations that indicates unit effectiveness or installation capability. 5 Characters */
-
   def combatEffectiveness(v: String) = jsOpt("combatEffectiveness", v)
 
   /** FieldID L -
@@ -299,7 +294,6 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 
   /** FieldID R2 -
     * M = Mobile, S = Static, or U = Uncertain. */
-
   def sigint(v: String) = jsOpt("sigint", v)
 
   /** FieldID T -
@@ -363,8 +357,7 @@ class Symbol protected() extends js.Object {
   def getMarker(): Symbol = js.native
 
   /** If you want to change the options of an existing symbol at the same time as you want to request it as a new marker,
-    * you can use setOptions(<Symbol options> options?) to update the options.
-    */
+    * you can use setOptions(<Symbol options> options?) to update the options. */
   def setOptions(options: SymbolOptions): Symbol = js.native
 
   /** Parses the XML and returns a DOM element. */
@@ -388,8 +381,7 @@ class Symbol protected() extends js.Object {
   var height: Double = js.native
   /** The anchor point for the current marker, this is usually the center of the octagon, but for headquarters it's the end of the staf. The coordinates are measured from the top left corner of the marker. */
   var markerAnchor: Anchor = js.native
-  /** The anchor point for the octagon for the current marker. The coordinates are measured from the top left corner of the marker.
-    */
+  /** The anchor point for the octagon for the current marker. The coordinates are measured from the top left corner of the marker. */
   var octagonAnchor: Anchor = js.native
   /** Properties of the current marker */
   var properties: Properties = js.native
