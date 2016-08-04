@@ -13,6 +13,12 @@ MIL-STD-2525D and NATO STANAG APP6(b).
 
 See the build.sbt file.
 
+## Usage
+
+To use the last release add the following dependency to your build.sbt:
+
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.1"
+
 ## Compiling and installation 
 
 To compile and generate a javascript file from the source code:
@@ -28,7 +34,7 @@ To publish **ScalaMS** to your local (Ivy) repository, simply type:
     
 Then put this in your build.sbt file
 
-    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.1-SNAPSHOT"
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.2-SNAPSHOT"
 
 See also [CesiumMil](https://github.com/workingDog/CesiumMil) for a basic example of using 
 [ScalaMS](https://github.com/workingDog/ScalaMS) and [CesiumScala](https://github.com/workingDog/CesiumScala)
