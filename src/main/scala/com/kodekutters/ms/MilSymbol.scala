@@ -7,7 +7,7 @@ package com.kodekutters.ms
   * milsymbol is a library in pure javascript that creates SVG symbols according to MIL-STD-2525C,
   * MIL-STD-2525D and NATO STANAG APP6(b).
   *
-  * Note milsymbol.js BSD license.
+  * Note milsymbol.js MIT license.
   */
 
 import org.querki.jsext.{JSOptionBuilder, _}
@@ -437,7 +437,7 @@ class Symbol protected() extends js.Object {
   def asDOM(): dom.Element = js.native
 
   /** Base 64 encodes the XML and returns the output as a SVG image stream that can be set as the source attribute on a image element. */
-  def asImage(): String = js.native // base 64 string todo
+  def toDataURL(): String = js.native // base 64 string todo
 
   /** Draws the marker to a canvas element using native draw instructions and returns the canvas element. */
   def asCanvas(): html.Canvas = js.native
