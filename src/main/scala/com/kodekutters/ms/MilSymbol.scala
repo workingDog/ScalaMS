@@ -217,6 +217,22 @@ trait SymbolColor extends js.Object {
 }
 
 /**
+  * Symbol outline
+  */
+@JSName("MS.outline")
+@ScalaJSDefined
+trait Outline extends js.Object {
+  /**  */
+  var geom: JSONGeometry
+  /**  */
+  var outline: String
+  /**  */
+  var stroke: Double
+  /**  */
+  var color: String
+}
+
+/**
   * The properties object describes a lot of different properties for the current marker.
   * This basically tells you everything you might need to know about your current marker and
   * depends on the SIDC for the symbol and the symbol options that you have set.
@@ -440,7 +456,7 @@ class Symbol protected() extends js.Object {
   def toDataURL(): String = js.native // base 64 string todo
 
   /** Draws the marker to a canvas element using native draw instructions and returns the canvas element. */
-  def asCanvas(): html.Canvas = js.native
+  def asCanvas(ratio: Double = 1): html.Canvas = js.native
 
   /** This will return the SVG XML string and it will also be stored in the XML property, if autoSVG is set to true the will be called automatically when you call getMarker. */
   def asSVG(): String = js.native
