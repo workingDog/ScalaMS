@@ -227,7 +227,7 @@ trait Outline extends js.Object {
   /** symbol outline width */
   var outlineWidth: Double
   /** symbol outline stroke */
-  var outlineStroke: Double
+  var strokeWidth: Double
   /** symbol outline color */
   var outlineColor: String
 }
@@ -323,7 +323,7 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
   def fillOpacity(v: Double) = jsOpt("fillOpacity", v)
 
   /** The stroke width of the symbol. */
-  def strokeWidth(v: Float) = jsOpt("strokeWidth", v)
+  def strokeWidth(v: Double) = jsOpt("strokeWidth", v)
 
   /** The L value for your symbol, where the L value is the width of the icon octagon.  */
   def size(v: Double) = jsOpt("size", v)
@@ -427,10 +427,10 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
 
   /** symbol outline width */
   def outlineWidth(v: Double) = jsOpt("outlineWidth", v)
+
   /** symbol outline color */
   def outlineColor(v: String) = jsOpt("outlineColor", v)
-  /** symbol outline stroke */
-//  def outlineStroke(v: Double) = jsOpt("stroke", v)
+
 }
 
 /**
@@ -502,7 +502,7 @@ class Symbol protected() extends js.Object {
   /** The opacity of the symbol fill color. */
   var fillOpacity: Double = js.native
   /** The stroke width of the symbol. */
-  var strokeWidth: Float = js.native
+  var strokeWidth: Double = js.native
   /** The L value for your symbol, where the L value is the width of the icon octagon.  */
   var size: Double = js.native
   /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
@@ -649,6 +649,8 @@ object MS extends js.Object {
   /** Scales the JSON geometry. */
   def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
 
-  /** symbol outline */
-  def outline(outline: Outline): Unit = js.native
+  /** symbol outline   */
+//  def outline(outline: Outline): Unit = js.native
+  /** symbol outline   */
+  def outline(geom: JSONGeometry | Array[JSONGeometry], outlineWidth: Double, strokeWidth: Double, outlineColor: String): Unit = js.native
 }
