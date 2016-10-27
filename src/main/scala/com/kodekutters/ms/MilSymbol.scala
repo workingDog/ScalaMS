@@ -223,13 +223,13 @@ trait SymbolColor extends js.Object {
 @ScalaJSDefined
 trait Outline extends js.Object {
   /**  */
-  var geom: JSONGeometry
-  /**  */
-  var outline: String
-  /**  */
-  var stroke: Double
-  /**  */
-  var color: String
+  var geom: JSONGeometry | Array[JSONGeometry]
+  /** symbol outline width */
+  var outlineWidth: Double
+  /** symbol outline stroke */
+  var outlineStroke: Double
+  /** symbol outline color */
+  var outlineColor: String
 }
 
 /**
@@ -424,6 +424,13 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
   /** FieldID AF -
     * Example: "Hawk" for Hawk SAM system. */
   def commonIdentifier(v: String) = jsOpt("commonIdentifier", v)
+
+  /** symbol outline width */
+  def outlineWidth(v: Double) = jsOpt("outlineWidth", v)
+  /** symbol outline color */
+  def outlineColor(v: String) = jsOpt("outlineColor", v)
+  /** symbol outline stroke */
+//  def outlineStroke(v: Double) = jsOpt("stroke", v)
 }
 
 /**
@@ -641,4 +648,7 @@ object MS extends js.Object {
 
   /** Scales the JSON geometry. */
   def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
+
+  /** symbol outline */
+  def outline(outline: Outline): Unit = js.native
 }
