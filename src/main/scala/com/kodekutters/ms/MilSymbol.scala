@@ -124,7 +124,6 @@ trait ScaleGeom extends JSONGeometry {
   * This helps you calculate where to place different symbol modifiers or the dimensions of
   * a building block that you want to add to the marker.
   */
-@JSName("MS.bbox")
 @ScalaJSDefined
 trait BoundingBox extends js.Object {
   /** The x value of the top left corner of the bounding box. */
@@ -136,10 +135,10 @@ trait BoundingBox extends js.Object {
   /** The y value of the bottom right corner of the bounding box. */
   var y2: Double
 
-  /** The height of the bouding box. */
+  /** The height of the bounding box. */
   def height(): Double
 
-  /** The width of the bouding box. */
+  /** The width of the bounding box. */
   def width(): Double
 }
 
@@ -147,7 +146,6 @@ trait BoundingBox extends js.Object {
   * A building block object describes a part that should be added to the marker.
   * It consists of two JSON geometries, and a bounding box for the geometries.
   */
-@JSName("MS.buildingBlock")
 @ScalaJSDefined
 trait BuildingBlock extends js.Object {
   /** This is the JSON geometry for the geometry we intend to draw. This part is inserted before any previous parts of the marker. */
@@ -162,7 +160,6 @@ trait BuildingBlock extends js.Object {
   * The stroke-dasharray attribute controls the pattern of dashes and gaps used to stroke paths on a SVG geometry.
   * Each property on the Dash object represent a stroke-dasharray used in milsymbol.
   */
-@JSName("MS.dashArrays")
 @ScalaJSDefined
 trait DashArrays extends js.Object {
   /** The value for the stroke-dasharray used for markers with a pending status. */
@@ -178,7 +175,6 @@ trait DashArrays extends js.Object {
   * a registred color object will have a name, this is called a color mode,
   * so that you will be able to get it using MS.getColorMode().
   */
-@JSName("MS.colorMode")
 @ScalaJSDefined
 trait ColorMode extends js.Object {
   /** A color that is either a keyword or a numerical RGB specification. */
@@ -219,10 +215,9 @@ trait SymbolColor extends js.Object {
 /**
   * Symbol outline
   */
-@JSName("MS.outline")
 @ScalaJSDefined
 trait Outline extends js.Object {
-  /**  */
+  /** the geometry or array of such */
   var geom: JSONGeometry | Array[JSONGeometry]
   /** symbol outline width */
   var outlineWidth: Double
@@ -294,7 +289,6 @@ trait Properties extends js.Object {
 /**
   * the Symbol options
   */
-@JSName("MS.Options")
 @js.native
 trait SymbolOptions extends js.Object
 
@@ -650,7 +644,7 @@ object MS extends js.Object {
   def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** symbol outline   */
-//  def outline(outline: Outline): Unit = js.native
+  def outline(outline: Outline): Unit = js.native
   /** symbol outline   */
   def outline(geom: JSONGeometry | Array[JSONGeometry], outlineWidth: Double, strokeWidth: Double, outlineColor: String): Unit = js.native
 }
