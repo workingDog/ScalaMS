@@ -172,7 +172,7 @@ trait DashArrays extends js.Object {
 
 /**
   * A color mode represents a set of colors with one color for each affiliation,
-  * a registred color object will have a name, this is called a color mode,
+  * a registered color object will have a name, this is called a color mode,
   * so that you will be able to get it using MS.getColorMode().
   */
 @ScalaJSDefined
@@ -304,7 +304,7 @@ class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptio
   /** Should your symbol have an icon. */
   def icon(v: Boolean) = jsOpt("icon", v)
 
-  /** 2525C specifics purple as an optional color for civilian symbols. Of corse we like color so we set this as default.  */
+  /** 2525C specifics purple as an optional color for civilian symbols. Of course we like this color so we set it as default.  */
   def civilianColor(v: Boolean) = jsOpt("civilianColor", v)
 
   /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
@@ -630,6 +630,15 @@ object MS extends js.Object {
 
   /** Adds a new function that returns a building block for a marker. This function will be added at the end of the marker parts array and therefor rendered on top of all other parts of the marker. This is an easy way to extend milsymbol. */
   def addMarkerParts(function: js.Function): Array[js.Function] = js.native
+
+  /** adds icon parts */
+  def addIconParts(function: js.Function): Array[js.Function] = js.native
+
+  /** adds letter sidc SIDC  */
+  def addLetterSIDCicons(function: js.Function): Array[js.Function] = js.native
+
+  /** adds number sidc SIDC */
+  def addNumberSIDCicons(function: js.Function): Array[js.Function] = js.native
 
   /** Sets a new array of function where each function returns a building block for a marker. You can use this if you want to add custom code between existing marker parts when you are extending milsymbol. */
   def setMarkerParts(functions: Array[js.Function]): Unit = js.native
