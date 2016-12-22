@@ -10,10 +10,9 @@ package com.kodekutters.ms
   * Note milsymbol.js MIT license.
   */
 
-import org.querki.jsext.{JSOptionBuilder, _}
 import scala.scalajs.js
 import scala.scalajs.js.annotation._
-import scala.scalajs.js.{Promise => _, _}
+import scala.scalajs.js.|
 import org.scalajs.dom
 import org.scalajs.dom.html
 import scala.language.implicitConversions
@@ -289,141 +288,138 @@ trait Properties extends js.Object {
 /**
   * the Symbol options
   */
-@js.native
-trait SymbolOptions extends js.Object
+@ScalaJSDefined
+trait SymbolOptions extends js.Object {
 
-object SymbolOptions extends SymbolOptionsBuilder(noOpts)
-
-class SymbolOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[SymbolOptions, SymbolOptionsBuilder](new SymbolOptionsBuilder(_)) {
   /** Should your symbol be filled with color. */
-  def fill(v: Boolean) = jsOpt("fill", v)
+  val fill: js.UndefOr[Boolean] = js.undefined
 
   /** Should your symbol have a frame. All symbols support to be unframed, not just the ones specified in 2525B. */
-  def frame(v: Boolean) = jsOpt("frame", v)
+  val frame: js.UndefOr[Boolean] = js.undefined
 
   /** Should your symbol have an icon. */
-  def icon(v: Boolean) = jsOpt("icon", v)
+  val icon: js.UndefOr[Boolean] = js.undefined
 
-  /** 2525C specifics purple as an optional color for civilian symbols. Of course we like this color so we set it as default.  */
-  def civilianColor(v: Boolean) = jsOpt("civilianColor", v)
+  /** 2525C specifics purple as an optional color for civilian symbols. Of course we like this color so we set it as valault.  */
+  val civilianColor: js.UndefOr[Boolean] = js.undefined
 
   /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
-  def infoFields(v: Boolean) = jsOpt("infoFields", v)
+  val infoFields: js.UndefOr[Boolean] = js.undefined
 
   /** MIL-STD-2525D lets you choose between MEDAL and alternate MEDAL icons for mine warefare symbols, the default in milsymbol is using MEDAL icons, but you can change this using setting this property to true. */
-  def alternateMedal(v: Boolean) = jsOpt("alternateMedal", v)
+  val alternateMedal: js.UndefOr[Boolean] = js.undefined
 
   /** The opacity of the symbol fill color. */
-  def fillOpacity(v: Double) = jsOpt("fillOpacity", v)
+  val fillOpacity: js.UndefOr[Double] = js.undefined
 
   /** The stroke width of the symbol. */
-  def strokeWidth(v: Double) = jsOpt("strokeWidth", v)
+  val strokeWidth: js.UndefOr[Double] = js.undefined
 
   /** The L value for your symbol, where the L value is the width of the icon octagon.  */
-  def size(v: Double) = jsOpt("size", v)
+  val size: js.UndefOr[Double] = js.undefined
 
   /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
-  def colorMode(v: ColorMode) = jsOpt("colorMode", v)
+  val colorMode: js.UndefOr[ColorMode] = js.undefined
 
   /** A color that is either a keyword or a numerical RGB specification. If you set this the symbol will be monochrome and unfilled using the color provided. */
-  def monoColor(v: String) = jsOpt("monoColor", v)
+  val monoColor: js.UndefOr[String] = js.undefined
 
   /** The size of the text fields surrounding the symbol. */
-  def infoSize(v: Double) = jsOpt("infoSize", v)
+  val infoSize: js.UndefOr[Double] = js.undefined
 
   // information section
   /** FieldID C -
     * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
-  def quantity(v: String) = jsOpt("quantity", v)
+  val quantity: js.UndefOr[String] = js.undefined
 
   /** FieldID F -
     * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
-  def reinforcedReduced(v: String) = jsOpt("reinforcedReduced", v)
+  val reinforcedReduced: js.UndefOr[String] = js.undefined
 
   /** FieldID G -
     * A text modifier for units, equipment and installations; content is implementation specific. 20 Characters */
-  def staffComments(v: String) = jsOpt("staffComments", v)
+  val staffComments: js.UndefOr[String] = js.undefined
 
   /** FieldID H -
     * A text modifier for units, equipment, and installations; content is implementation specific. 20 Characters  */
-  def additionalInformation(v: String) = jsOpt("additionalInformation", v)
+  val additionalInformation: js.UndefOr[String] = js.undefined
 
   /** FieldID J
     * A text modifier for units, equipment, and installations that consists of a one-letter reliability rating and a one-number credibility rating. 2 Characters */
-  def evaluationRating(v: String) = jsOpt("evaluationRating", v)
+  val evaluationRating: js.UndefOr[String] = js.undefined
 
   /** FieldID K -
     * A text modifier for units and installations that indicates unit effectiveness or installation capability. 5 Characters */
-  def combatEffectiveness(v: String) = jsOpt("combatEffectiveness", v)
+  val combatEffectiveness: js.UndefOr[String] = js.undefined
 
   /** FieldID L -
     * A text modifier for hostile equipment; "!" indicates detectable electronic signatures. 1 Characters */
-  def signatureEquipment(v: String) = jsOpt("signatureEquipment", v)
+  val signatureEquipment: js.UndefOr[String] = js.undefined
 
   /** FieldID M -
     * A text modifier for units that indicates number or title of higher echelon command (corps are designated by Roman numerals). 21 Characters */
-  def higherFormation(v: String) = jsOpt("higherFormation", v)
+  val higherFormation: js.UndefOr[String] = js.undefined
 
   /** FieldID N
     * A text modifier for equipment; letters "ENY" denote hostile symbols. 3 Characters */
-  def hostile(v: String) = jsOpt("hostile", v)
+  val hostile: js.UndefOr[String] = js.undefined
 
   /** FieldID P -
     * A text modifier displaying IFF/SIF Identification modes and codes. 5 Characters	 */
-  def iffSif(v: String) = jsOpt("iffSif", v)
+  val iffSif: js.UndefOr[String] = js.undefined
 
   /** FieldID Q -  at the moment all directions should be in degrees and not in mils. Set to an empty string to remove the direction arrow. */
-  def direction(v: Double) = jsOpt("direction", v)
+  val direction: js.UndefOr[Double] = js.undefined
 
   /** FieldID R2 -
     * M = Mobile, S = Static, or U = Uncertain. */
-  def sigint(v: String) = jsOpt("sigint", v)
+  val sigint: js.UndefOr[String] = js.undefined
 
   /** FieldID T -
     * A text modifier for units, equipment, and installations that uniquely identifies a particular symbol or track number. Identifies acquisitions number when used with SIGINT symbology. 21 Characters */
-  def uniqueDesignation(v: String) = jsOpt("uniqueDesignation", v)
+  val uniqueDesignation: js.UndefOr[String] = js.undefined
 
   /** FieldID V -
     * A text modifier for equipment that indicates types of equipment. 24 Characters */
-  def `type`(v: String) = jsOpt("type", v)
+  val `type`: js.UndefOr[String] = js.undefined
 
   /** FieldID W -
     * A text modifier for units, equipment, and installations that displays DTG format: DDHHMMSSZMONYYYY or "O/O" for on order. 16 Characters */
-  def dtg(v: String) = jsOpt("dtg", v)
+  val dtg: js.UndefOr[String] = js.undefined
 
   /** FieldID X -
     * A text modifier for units, equipment, and installations, that displays either altitude flight level, depth for submerged objects; or height of equipment or structures on the ground. 14 Characters	 */
-  def altitudeDepth(v: String) = jsOpt("altitudeDepth", v)
+  val altitudeDepth: js.UndefOr[String] = js.undefined
 
   /** FieldID Y -
     * A text modifier for units, equipment, and installations that displays a symbol's location in degrees, minutes, and seconds (or in UTM or other applicable display format). 19 Characters */
-  def location(v: String) = jsOpt("location", v)
+  val location: js.UndefOr[String] = js.undefined
 
   /** FieldID Z -
     * A text modifier for units and equipment that displays velocity as set forth in MIL-STD-6040. 8 Characters	 */
-  def speed(v: String) = jsOpt("speed", v)
+  val speed: js.UndefOr[String] = js.undefined
 
   /** FieldID AA -
     * A text modifier for units; indicator is contained inside the frame; contains the name of the special C2 Headquarters. 9 Characters */
-  def specialHeadquarters(v: String) = jsOpt("specialHeadquarters", v)
+  val specialHeadquarters: js.UndefOr[String] = js.undefined
 
   /** FieldID AD -
     * "ELNOT" or "CENOT" */
-  def platformType(v: String) = jsOpt("platformType", v)
+  val platformType: js.UndefOr[String] = js.undefined
 
   /** FieldID AE -
     * Equipment teardown time in minutes. */
-  def equipmentTeardownTime(v: String) = jsOpt("equipmentTeardownTime", v)
+  val equipmentTeardownTime: js.UndefOr[String] = js.undefined
 
   /** FieldID AF -
     * Example: "Hawk" for Hawk SAM system. */
-  def commonIdentifier(v: String) = jsOpt("commonIdentifier", v)
+  val commonIdentifier: js.UndefOr[String] = js.undefined
 
   /** symbol outline width */
-  def outlineWidth(v: Double) = jsOpt("outlineWidth", v)
+  val outlineWidth: js.UndefOr[Double] = js.undefined
 
   /** symbol outline color */
-  def outlineColor(v: String) = jsOpt("outlineColor", v)
+  val outlineColor: js.UndefOr[String] = js.undefined
 
 }
 

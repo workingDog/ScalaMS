@@ -14,8 +14,7 @@ scalaVersion := "2.11.8"
 crossScalaVersions := Seq("2.11.8")
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-  "org.querki" %%% "querki-jsext" % "0.7"
+  "org.scala-js" %%% "scalajs-dom" % "0.9.1"
 )
 
 jsDependencies += RuntimeDOM

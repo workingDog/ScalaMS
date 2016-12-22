@@ -9,3 +9,7 @@ Change Log
 * added Outline 
 * added addIconParts(function: js.Function)
 * added addLetterSIDCicons(function: js.Function), addNumberSIDCicons(function: js.Function)
+
+* updated to Scala.js-0.6.14
+* replaced SymbolOptionsBuilder with Scala.js-0.6.14 configuration object
+* removed dependency on org.querki.jsext 
