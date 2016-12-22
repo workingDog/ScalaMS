@@ -35,7 +35,7 @@ See also [CesiumMil](https://github.com/workingDog/CesiumMil) for a basic exampl
 
 ## Compiling and installation 
 
-scalams version "0.2-SNAPSHOT" now requires Scala.js-0.6.14.
+**ScalaMS** version "0.2-SNAPSHOT" now requires Scala.js-0.6.14.
 
 To compile and generate a javascript file from the source code:
 
