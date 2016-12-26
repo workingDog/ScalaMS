@@ -1,7 +1,11 @@
 Change Log
 ==========
 
-## changes in 0.2-SNAPSHOT
+## changes in 0.3-SNAPSHOT
+
+
+## changes in 0.2
+compatible with milsymbol.js-0.6
 
 * changed asImage to toDataURL
 * changed asCanvas(ratio: Double = 1) to take a "window" ratio value, default=1.
