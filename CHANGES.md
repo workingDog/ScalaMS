@@ -2,6 +2,9 @@ Change Log
 ==========
 
 ## changes in 0.3-SNAPSHOT
+* added cross building and publishing for scala 2.11.8 and 2.12.1
+* added merge to BoundingBox
+* added getSize(), getAnchor() and getOctagonAnchor() to Symbol
 
 
 ## changes in 0.2

@@ -139,6 +139,9 @@ trait BoundingBox extends js.Object {
 
   /** The width of the bounding box. */
   def width(): Double
+
+  /** use this instead of MS.bboxMax for merging bounding boxes. */
+  def merge(box: BoundingBox): BoundingBox
 }
 
 /**
@@ -439,7 +442,12 @@ class Symbol protected() extends js.Object {
   /** This will return an object with several named properties, where each property is a Color object. This represent all colors that can be used for the current marker. */
   def getColors(): SymbolColor = js.native
 
-  /* When the getMarker() method is called, all properties of the Symbol Object is updated (getMarker() calls getProperties() and getColors()) and a marker is composed by all marker parts. When this is done the Symbol Object itself is returned. */
+  /** When the getMarker() method is called, all properties of the Symbol Object
+    * is updated (getMarker() calls getProperties() and getColors()) and a marker
+    * is composed by all marker parts. When this is done the Symbol Object itself is returned.
+    *
+    * Note: not needed anymore, symbols are automatically updated when options are updated
+    * using setOptions(). */
   def getMarker(): Symbol = js.native
 
   /** If you want to change the options of an existing symbol at the same time as you want to request it as a new marker,
@@ -457,6 +465,15 @@ class Symbol protected() extends js.Object {
 
   /** This will return the SVG XML string and it will also be stored in the XML property, if autoSVG is set to true the will be called automatically when you call getMarker. */
   def asSVG(): String = js.native
+
+  /** returns an object with the width and height of the symbol. */
+  def getSize(): js.Object = js.native
+
+  /** returns an object with the x and y offset of the symbol. */
+  def getAnchor(): js.Object = js.native
+
+  /** returns an object with the x and y offset of the octagon center. */
+  def getOctagonAnchor(): js.Object = js.native
 
   // properties
   /** Contains the bounding box of the current marker */
