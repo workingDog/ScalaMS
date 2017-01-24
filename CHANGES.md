@@ -5,7 +5,8 @@ Change Log
 * added cross building and publishing for scala 2.11.8 and 2.12.1
 * added merge to BoundingBox
 * added getSize(), getAnchor() and getOctagonAnchor() to Symbol
-
+* added a Size object (supporting Scala element) used in Symbol.getSize()
+* 
 
 ## changes in 0.2
 compatible with milsymbol.js-0.6

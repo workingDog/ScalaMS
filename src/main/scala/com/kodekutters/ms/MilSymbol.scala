@@ -28,6 +28,15 @@ trait Anchor extends js.Object {
 }
 
 /**
+  * A size object
+  */
+@ScalaJSDefined
+trait Size extends js.Object {
+  var width: Double
+  var height: Double
+}
+
+/**
   * a generic JSON geometry
   */
 @js.native
@@ -467,13 +476,13 @@ class Symbol protected() extends js.Object {
   def asSVG(): String = js.native
 
   /** returns an object with the width and height of the symbol. */
-  def getSize(): js.Object = js.native
+  def getSize(): Size = js.native
 
   /** returns an object with the x and y offset of the symbol. */
-  def getAnchor(): js.Object = js.native
+  def getAnchor(): Anchor = js.native
 
   /** returns an object with the x and y offset of the octagon center. */
-  def getOctagonAnchor(): js.Object = js.native
+  def getOctagonAnchor(): Anchor = js.native
 
   // properties
   /** Contains the bounding box of the current marker */
