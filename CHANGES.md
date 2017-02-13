@@ -6,7 +6,12 @@ Change Log
 * added merge to BoundingBox
 * added getSize(), getAnchor() and getOctagonAnchor() to Symbol
 * added a Size object (supporting Scala element) used in Symbol.getSize()
-* 
+* added getVersion(), addSIDCicons, addLabelOverrides, addSymbolPart, addLetterLabelOverrides,
+BBox, ColorMode, Symbol and ms to MS Object
+* removed translate, rotate and scale from MS object
+* added colorMode(mode: String) to creates a new color mode from a string representing a registered color mode 
+* added colorMode(mode: ColorMode) as above for convenience
+
 
 ## changes in 0.2
 compatible with milsymbol.js-0.6

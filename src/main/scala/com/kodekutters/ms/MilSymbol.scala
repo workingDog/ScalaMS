@@ -666,16 +666,51 @@ object MS extends js.Object {
   def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
   /** Moves the JSON geometry in x,y direction. */
-  def translate(x: Double, y: Double, geom: JSONGeometry): JSONGeometry = js.native
+//  def translate(x: Double, y: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** Rotates the JSON geometry. */
-  def rotate(angle: Double, geom: JSONGeometry): JSONGeometry = js.native
+//  def rotate(angle: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** Scales the JSON geometry. */
-  def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
+//  def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
 
   /** symbol outline   */
   def outline(outline: Outline): Unit = js.native
+
   /** symbol outline   */
   def outline(geom: JSONGeometry | Array[JSONGeometry], outlineWidth: Double, strokeWidth: Double, outlineColor: String): Unit = js.native
+
+  // ---
+
+  /** Creates a new color mode from a string representing a registered color mode */
+  def colorMode(mode: String): ColorMode = js.native
+
+  def colorMode(mode: ColorMode): ColorMode = js.native
+
+  def getVersion(): String = js.native
+
+  /** the "internal" milsymbol object */
+  val ms: this.type = js.native
+
+  def addSIDCicons(function: js.Function, `type`: String): this.type = js.native
+
+  def addLabelOverrides(function: js.Function, `type`: String): this.type = js.native
+
+  def addSymbolPart(function: js.Function): this.type = js.native
+
+  def addLetterLabelOverrides(function: js.Function, `type`: String): this.type = js.native
+
+  def BBox(): BoundingBox = js.native
+
+  def ColorMode(): ColorMode = js.native
+
+  def Symbol(): Symbol = js.native
+
+  //  def addNumberLabelOverrides(function: js.Function): Array[js.Function] = js.native
+
+  //  def setSymbolParts(function: js.Function): Array[js.Function] = js.native
+
+  //  def addIconPart(function: js.Function): Array[js.Function] = js.native
+
+
 }
