@@ -17,7 +17,6 @@ import org.scalajs.dom
 import org.scalajs.dom.html
 import scala.language.implicitConversions
 
-
 /**
   * An anchor point
   */
@@ -439,7 +438,7 @@ trait SymbolOptions extends js.Object {
   * Symbol object with a SIDC, and optional symbol options
   * The SIDC is a complete, letter based or number based, or at least the first 3 chars of a letter based SIDC.
   */
-@JSName("MS.symbol")
+@JSName("ms.symbol")
 @js.native
 class Symbol protected() extends js.Object {
   /** constructor */
@@ -599,7 +598,7 @@ class Symbol protected() extends js.Object {
 /**
   * Global milsymbol
   */
-@JSName("MS")
+@JSName("ms")
 @js.native
 object MS extends js.Object {
 
@@ -665,22 +664,11 @@ object MS extends js.Object {
   /** Sets a new array of function where each function returns a building block for a marker. You can use this if you want to add custom code between existing marker parts when you are extending milsymbol. */
   def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
-  /** Moves the JSON geometry in x,y direction. */
-//  def translate(x: Double, y: Double, geom: JSONGeometry): JSONGeometry = js.native
-
-  /** Rotates the JSON geometry. */
-//  def rotate(angle: Double, geom: JSONGeometry): JSONGeometry = js.native
-
-  /** Scales the JSON geometry. */
-//  def scale(factor: Double, geom: JSONGeometry): JSONGeometry = js.native
-
   /** symbol outline   */
   def outline(outline: Outline): Unit = js.native
 
   /** symbol outline   */
   def outline(geom: JSONGeometry | Array[JSONGeometry], outlineWidth: Double, strokeWidth: Double, outlineColor: String): Unit = js.native
-
-  // ---
 
   /** Creates a new color mode from a string representing a registered color mode */
   def colorMode(mode: String): ColorMode = js.native
@@ -711,6 +699,5 @@ object MS extends js.Object {
   //  def setSymbolParts(function: js.Function): Array[js.Function] = js.native
 
   //  def addIconPart(function: js.Function): Array[js.Function] = js.native
-
 
 }

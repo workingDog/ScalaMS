@@ -11,7 +11,8 @@ BBox, ColorMode, Symbol and ms to MS Object
 * removed translate, rotate and scale from MS object
 * added colorMode(mode: String) to creates a new color mode from a string representing a registered color mode 
 * added colorMode(mode: ColorMode) as above for convenience
-
+* global variable is now ms instead of MS, the Scala object remains MS, 
+  but ms can also be refer to. Similarly, the Scala Symbol refers to the javascript ms.symbol 
 
 ## changes in 0.2
 compatible with milsymbol.js-0.6
