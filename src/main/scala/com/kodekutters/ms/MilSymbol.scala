@@ -17,6 +17,7 @@ import org.scalajs.dom
 import org.scalajs.dom.html
 import scala.language.implicitConversions
 
+
 /**
   * An anchor point
   */
@@ -36,7 +37,10 @@ trait Size extends js.Object {
 }
 
 /**
-  * a generic JSON geometry
+  * a generic JSON geometry.
+  *
+  * The symbols in milsymbol are drawn using JSON draw instructions drawInstruction,
+  * these are then converted into Canvas draw instructions, or SVG output.
   */
 @js.native
 trait JSONGeometry extends js.Object {
@@ -54,7 +58,7 @@ trait SVGGeom extends JSONGeometry {
 }
 
 /**
-  * a path geometry
+  * a path geometry, drawInstruction
   */
 @js.native
 trait PathGeom extends JSONGeometry {
@@ -67,7 +71,7 @@ trait PathGeom extends JSONGeometry {
 }
 
 /**
-  * a circle geometry
+  * a circle geometry, drawInstruction
   */
 @js.native
 trait CircleGeom extends JSONGeometry {
@@ -82,7 +86,7 @@ trait CircleGeom extends JSONGeometry {
 }
 
 /**
-  * a text geometry
+  * a text geometry, drawInstruction
   */
 @js.native
 trait TextGeom extends JSONGeometry {
@@ -100,12 +104,14 @@ trait TextGeom extends JSONGeometry {
 }
 
 /**
-  * a translate geometry
+  * a translate geometry, drawInstruction
   */
 @js.native
 trait TranslateGeom extends JSONGeometry {
   var x: Int = js.native
   var y: Int = js.native
+
+  def draw: TranslateGeom = js.native
 }
 
 /**
@@ -116,6 +122,8 @@ trait RotateGeom extends JSONGeometry {
   var degree: Double = js.native
   var x: Int = js.native
   var y: Int = js.native
+
+  def draw: RotateGeom = js.native
 }
 
 /**
@@ -124,6 +132,8 @@ trait RotateGeom extends JSONGeometry {
 @js.native
 trait ScaleGeom extends JSONGeometry {
   var factor: Double = js.native
+
+  def draw: ScaleGeom = js.native
 }
 
 /**
@@ -150,6 +160,16 @@ trait BoundingBox extends js.Object {
 
   /** use this instead of MS.bboxMax for merging bounding boxes. */
   def merge(box: BoundingBox): BoundingBox
+}
+
+/**
+  * A SymbolPart
+  */
+@ScalaJSDefined
+trait SymbolPart extends js.Object {
+  var pre: JSONGeometry
+  var post: JSONGeometry
+  var bbox: BoundingBox
 }
 
 /**
@@ -293,7 +313,7 @@ trait Properties extends js.Object {
   /** Geometry is a combination of dimension and affiliation (AirFriend/GroundHostile...)  */
   var baseGeometry: JSONGeometry
   /** The bottom of the icon, this is only set for equipment symbols.  */
-  var iconBottom: Double
+  //  var iconBottom: Double
 }
 
 /**
@@ -301,6 +321,13 @@ trait Properties extends js.Object {
   */
 @ScalaJSDefined
 trait SymbolOptions extends js.Object {
+
+  /** This will be used for texts in the text fields surrounding the symbol.
+    * It is a color that is either a keyword or a numerical RGB specification. */
+  val infoColor: js.UndefOr[String] = js.undefined
+
+  /** Overrides the global Headquarters staf length */
+  val hqStafLength: js.UndefOr[Double] = js.undefined
 
   /** Should your symbol be filled with color. */
   val fill: js.UndefOr[Boolean] = js.undefined
@@ -593,6 +620,8 @@ class Symbol protected() extends js.Object {
   /** FieldID AF -
     * Example: "Hawk" for Hawk SAM system. */
   var commonIdentifier: String = js.native
+  /** Example: Tactical Operations Centre put as 'TOC'. */
+  var headquartersElement: String = js.native
 }
 
 /**
@@ -636,6 +665,8 @@ object MS extends js.Object {
 
   /** Sets the dash-arrays used in dashed symbols. */
   def setDashArrays(pending: String, anticipated: String, feintDummy: String): DashArrays = js.native
+
+  def setDashArrays(dashArras: DashArrays): DashArrays = js.native
 
   /** This method gets the setting for how long the HQ staf should be, default it is one octagon (100) long. */
   def getHqStafLength(): Double = js.native
@@ -684,7 +715,7 @@ object MS extends js.Object {
 
   def addLabelOverrides(function: js.Function, `type`: String): this.type = js.native
 
-  def addSymbolPart(function: js.Function): this.type = js.native
+  def addSymbolPart(part: SymbolPart): this.type = js.native
 
   def addLetterLabelOverrides(function: js.Function, `type`: String): this.type = js.native
 
@@ -694,10 +725,12 @@ object MS extends js.Object {
 
   def Symbol(): Symbol = js.native
 
-  //  def addNumberLabelOverrides(function: js.Function): Array[js.Function] = js.native
+  /** This gets all symbol functions that has been inserted by addSymbolPart */
+  def getSymbolParts(): Array[SymbolPart] = js.native
 
-  //  def setSymbolParts(function: js.Function): Array[js.Function] = js.native
-
-  //  def addIconPart(function: js.Function): Array[js.Function] = js.native
+  /** Replaces the current symbol functions with an Array of symbol functions.
+    * This can be used to modify the symbol functions that are built into milsymbol.
+    */
+  def setSymbolParts(parts: Array[SymbolPart]): this.type = js.native
 
 }

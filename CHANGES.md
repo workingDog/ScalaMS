@@ -1,7 +1,13 @@
 Change Log
 ==========
 
-## changes in 0.3-SNAPSHOT
+## changes in 1.0.1-SNAPSHOT  
+
+
+
+## changes in 0.3-SNAPSHOT  ---> will probably be renamed 1.0.0
+compatible with milsymbol.js-1.0.0
+
 * added cross building and publishing for scala 2.11.8 and 2.12.1
 * added merge to BoundingBox
 * added getSize(), getAnchor() and getOctagonAnchor() to Symbol
@@ -13,6 +19,10 @@ BBox, ColorMode, Symbol and ms to MS Object
 * added colorMode(mode: ColorMode) as above for convenience
 * global variable is now ms instead of MS, the Scala object remains MS, 
   but ms can also be refer to. Similarly, the Scala Symbol refers to the javascript ms.symbol 
+* added SymbolPart and modified addSymbolPart(part: SymbolPart)
+* added getSymbolParts
+* added setDashArrays(dashArras: DashArrays)
+* restored setSymbolParts
 
 ## changes in 0.2
 compatible with milsymbol.js-0.6
