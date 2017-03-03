@@ -1,13 +1,14 @@
 # Scala.js façade to milsymbol.js 
 
-This library **ScalaMS** is a Scala interface to the SPATIAL ILLUSIONS [Military Unit Symbols in JavaScript](http://www.spatialillusions.com/milsymbol), milsymbol.js.
+This library **ScalaMS** is a Scala interface to the [SPATIAL ILLUSIONS](http://www.spatialillusions.com) Military Unit Symbols in JavaScript,
+ [milsymbol.js](https://github.com/spatialillusions/milsymbol).
 
-[milsymbol.js](https://github.com/spatialillusions/milsymbol) is a library in pure JavaScript that creates SVG symbols according to MIL-STD-2525C,
+[milsymbol.js](http://spatialillusions.com/milsymbol-dev/) is a library in pure JavaScript that creates SVG symbols according to MIL-STD-2525C,
 MIL-STD-2525D and NATO STANAG APP6(b). 
 
 ## References
  
-1) [milsymbol.js](https://github.com/spatialillusions/milsymbol)
+1) [milsymbol.js on GitHub](https://github.com/spatialillusions/milsymbol)
 
 ## Dependencies
 
@@ -56,8 +57,8 @@ Then put this in your build.sbt file
 
 ## Documentations
 
-Refer to the original [overview](http://spatialillusions.com/milsymbol/index.html) documentation and 
-the [milsymbol API](http://www.spatialillusions.com/milsymbol/docs/index.html) documentation.
+Refer to the original [overview](http://spatialillusions.com/milsymbol-dev/) documentation and 
+the [milsymbol API](http://spatialillusions.com/milsymbol-dev/docs/index.html) documentation.
 
 To generate the Scala doc:
     
