@@ -5,7 +5,7 @@ Change Log
 
 
 
-## changes in 0.3-SNAPSHOT  ---> will probably be renamed 1.0.0
+## changes in 1.0.0
 compatible with milsymbol.js-1.0.0
 
 * added cross building and publishing for scala 2.11.8 and 2.12.1

@@ -312,8 +312,6 @@ trait Properties extends js.Object {
   var notpresent: String
   /** Geometry is a combination of dimension and affiliation (AirFriend/GroundHostile...)  */
   var baseGeometry: JSONGeometry
-  /** The bottom of the icon, this is only set for equipment symbols.  */
-  //  var iconBottom: Double
 }
 
 /**

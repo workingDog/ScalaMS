@@ -1,9 +1,9 @@
 # Scala.js façade to milsymbol.js 
 
-This library **ScalaMS** is a Scala interface to the [SPATIAL ILLUSIONS](http://www.spatialillusions.com) Military Unit Symbols in JavaScript,
+This library **ScalaMS** is a Scala interface to the [SPATIAL ILLUSIONS](http://spatialillusions.com/milsymbol/) Military Unit Symbols in JavaScript,
  [milsymbol.js](https://github.com/spatialillusions/milsymbol).
 
-[milsymbol.js](http://spatialillusions.com/milsymbol-dev/) is a library in pure JavaScript that creates SVG symbols according to MIL-STD-2525C,
+[milsymbol.js](https://github.com/spatialillusions/milsymbol) is a library in pure JavaScript that creates SVG symbols according to MIL-STD-2525C,
 MIL-STD-2525D and NATO STANAG APP6(b). 
 
 ## References
@@ -14,13 +14,13 @@ MIL-STD-2525D and NATO STANAG APP6(b).
 
 See the build.sbt file.
 
-As of **ScalaMS** ver: 0.2, the façade requires Scala.js-0.6.14.
+Requires at least Scala.js-0.6.14.
 
 ## Usage
 
-To use the last release (for milsymbol.js 0.6) add the following dependency to your build.sbt:
+To use the last release (for milsymbol.js 1.0.0) add the following dependency to your build.sbt:
 
-    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.2"
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.0.0"
 
 To create a new symbol:
 
@@ -53,12 +53,12 @@ To publish **ScalaMS** to your local (Ivy) repository, simply type:
     
 Then put this in your build.sbt file
 
-    libraryDependencies += "com.github.workingDog" %%% "scalams" % "0.3-SNAPSHOT"
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.0.1-SNAPSHOT
 
 ## Documentations
 
-Refer to the original [overview](http://spatialillusions.com/milsymbol-dev/) documentation and 
-the [milsymbol API](http://spatialillusions.com/milsymbol-dev/docs/index.html) documentation.
+Refer to the original [overview](http://spatialillusions.com/milsymbol/index.html) documentation and 
+the [milsymbol API](http://spatialillusions.com/milsymbol/docs/index.html) documentation.
 
 To generate the Scala doc:
     
