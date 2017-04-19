@@ -1,9 +1,15 @@
 Change Log
 ==========
 
-## changes in 1.0.1-SNAPSHOT  
+## changes in 1.1.1 -SNAPSHOT  
 
 
+## changes in 1.1.0 
+compatible with milsymbol.js-1.1.0 
+
+* It is now possible to initiate a symbol with just an options object new Symbol(options).
+* Symbol().isValid() now returns a boolean representing if it was possible to find the symbol icon for the provided SIDC.
+* added SIDC and sidc to SymbolOptions
 
 ## changes in 1.0.0
 compatible with milsymbol.js-1.0.0

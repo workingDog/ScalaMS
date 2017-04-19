@@ -14,13 +14,13 @@ MIL-STD-2525D and NATO STANAG APP6(b).
 
 See the build.sbt file.
 
-Requires at least Scala.js-0.6.14.
+Requires at least Scala.js-0.6.15.
 
 ## Usage
 
-To use the last release (for milsymbol.js 1.0.0) add the following dependency to your build.sbt:
+To use the last release (for milsymbol.js 1.1.0) add the following dependency to your build.sbt:
 
-    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.0.0"
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.1.0"
 
 To create a new symbol:
 
@@ -53,7 +53,7 @@ To publish **ScalaMS** to your local (Ivy) repository, simply type:
     
 Then put this in your build.sbt file
 
-    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.0.1-SNAPSHOT
+    libraryDependencies += "com.github.workingDog" %%% "scalams" % "1.1.1-SNAPSHOT
 
 ## Documentations
 

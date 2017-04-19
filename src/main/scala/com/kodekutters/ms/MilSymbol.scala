@@ -320,6 +320,10 @@ trait Properties extends js.Object {
 @ScalaJSDefined
 trait SymbolOptions extends js.Object {
 
+  /** SIDC/sidc of the symbol */
+  val SIDC: js.UndefOr[String] = js.undefined
+  val sidc: js.UndefOr[String] = js.undefined
+
   /** This will be used for texts in the text fields surrounding the symbol.
     * It is a color that is either a keyword or a numerical RGB specification. */
   val infoColor: js.UndefOr[String] = js.undefined
@@ -463,11 +467,17 @@ trait SymbolOptions extends js.Object {
   * Symbol object with a SIDC, and optional symbol options
   * The SIDC is a complete, letter based or number based, or at least the first 3 chars of a letter based SIDC.
   */
-@JSName("ms.symbol")
+@JSGlobal("ms.symbol")
 @js.native
 class Symbol protected() extends js.Object {
   /** constructor */
   def this(SIDC: String, options: SymbolOptions = ???) = this()
+
+  /** constructor */
+  def this(options: SymbolOptions) = this()
+
+  /** returns a boolean if it was possible to find the symbol icon for the provided SIDC. */
+  def isValid(): Boolean = js.native
 
   /** This will update and return the Properties Object for the current marker. */
   def getProperties(): Properties = js.native
@@ -625,7 +635,7 @@ class Symbol protected() extends js.Object {
 /**
   * Global milsymbol
   */
-@JSName("ms")
+@JSGlobal("ms")
 @js.native
 object MS extends js.Object {
 
