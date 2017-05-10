@@ -3,6 +3,7 @@ Change Log
 
 ## changes in 1.1.1 -SNAPSHOT  
 
+* added isValid(option) to Symbol
 
 ## changes in 1.1.0 
 compatible with milsymbol.js-1.1.0 

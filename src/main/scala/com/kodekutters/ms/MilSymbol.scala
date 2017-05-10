@@ -479,6 +479,11 @@ class Symbol protected() extends js.Object {
   /** returns a boolean if it was possible to find the symbol icon for the provided SIDC. */
   def isValid(): Boolean = js.native
 
+  /** returns a boolean if it was possible to find the symbol icon for the provided SIDC,
+    * or an object with the validity of different parts of the symbol code.
+    */
+  def isValid(option: Option[Boolean] = Some(false)): js.Object | Boolean = js.native
+
   /** This will update and return the Properties Object for the current marker. */
   def getProperties(): Properties = js.native
 
