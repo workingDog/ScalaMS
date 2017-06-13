@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+
+## changes in 1.2.1 -SNAPSHOT  
+
+
+## changes in 1.2.0
+compatible with milsymbol.js-1.2.0
+
+* upgraded to Scala.js-0.6.17 and Scala-2.12.2
+* removed all deprecated methods listed in milsymbol-1.0.0
+
 ## changes in 1.1.1 -SNAPSHOT  
 
 * added isValid(option) to Symbol

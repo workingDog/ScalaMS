@@ -15,13 +15,11 @@ import scala.scalajs.js.annotation._
 import scala.scalajs.js.|
 import org.scalajs.dom
 import org.scalajs.dom.html
-import scala.language.implicitConversions
-
 
 /**
   * An anchor point
   */
-@ScalaJSDefined
+@js.native
 trait Anchor extends js.Object {
   var x: Double
   var y: Double
@@ -30,7 +28,7 @@ trait Anchor extends js.Object {
 /**
   * A size object
   */
-@ScalaJSDefined
+@js.native
 trait Size extends js.Object {
   var width: Double
   var height: Double
@@ -490,14 +488,6 @@ class Symbol protected() extends js.Object {
   /** This will return an object with several named properties, where each property is a Color object. This represent all colors that can be used for the current marker. */
   def getColors(): SymbolColor = js.native
 
-  /** When the getMarker() method is called, all properties of the Symbol Object
-    * is updated (getMarker() calls getProperties() and getColors()) and a marker
-    * is composed by all marker parts. When this is done the Symbol Object itself is returned.
-    *
-    * Note: not needed anymore, symbols are automatically updated when options are updated
-    * using setOptions(). */
-  def getMarker(): Symbol = js.native
-
   /** If you want to change the options of an existing symbol at the same time as you want to request it as a new marker,
     * you can use setOptions(<Symbol options> options?) to update the options. */
   def setOptions(options: SymbolOptions): Symbol = js.native
@@ -570,7 +560,7 @@ class Symbol protected() extends js.Object {
   // information fields options
   /** FieldID C -
     * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
-  var quantity: String = js.native
+   var quantity: String = js.native
   /** FieldID F -
     * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
   var reinforcedReduced: String = js.native
@@ -645,10 +635,7 @@ class Symbol protected() extends js.Object {
 object MS extends js.Object {
 
   /** Get the current version of milsymbol */
-  val version: String = js.native
-
-  /** Gets or sets if milsymbol should generate SVG output by default, if you only plan on using Canvas you can set this to false. */
-  var autoSVG: Boolean = js.native
+   val version: String = js.native
 
   /** "2525" or "APP6" */
   def setStandard(symbology: String): Unit = js.native
@@ -663,12 +650,6 @@ object MS extends js.Object {
     * The first SVG geometry is inserted before existing code and the second after.
     */
   def buildingBlock(pre: JSONGeometry, post: JSONGeometry, bbox: BoundingBox): BuildingBlock = js.native
-
-  /** Initiates a basic bounding box for a geometry covering the symbol octagon. */
-  def bbox(): BoundingBox = js.native
-
-  /** Creates a new color mode from an array of colors. */
-  def colorMode(civilian: String, friend: String, hostile: String, neutral: String, unknown: String): ColorMode = js.native
 
   /** Gets an color mode that has been registred with a name. */
   def getColorMode(mode: String): ColorMode = js.native
@@ -687,26 +668,8 @@ object MS extends js.Object {
   /** This method gets the setting for how long the HQ staf should be, you can set it to any number, but would recommend to keep it between 50 - 150. */
   def setHqStafLength(number: Double): Double = js.native
 
-  /** The max bounds of two bounding boxes. */
-  def bboxMax(box1: BoundingBox, box2: BoundingBox): BoundingBox = js.native
-
-  /** Returns an array of functions where each function returns a building block for a marker. */
-  def getMarkerParts(): Array[js.Function] = js.native
-
-  /** Adds a new function that returns a building block for a marker. This function will be added at the end of the marker parts array and therefor rendered on top of all other parts of the marker. This is an easy way to extend milsymbol. */
-  def addMarkerParts(function: js.Function): Array[js.Function] = js.native
-
   /** adds icon parts */
   def addIconParts(function: js.Function): Array[js.Function] = js.native
-
-  /** adds letter sidc SIDC  */
-  def addLetterSIDCicons(function: js.Function): Array[js.Function] = js.native
-
-  /** adds number sidc SIDC */
-  def addNumberSIDCicons(function: js.Function): Array[js.Function] = js.native
-
-  /** Sets a new array of function where each function returns a building block for a marker. You can use this if you want to add custom code between existing marker parts when you are extending milsymbol. */
-  def setMarkerParts(functions: Array[js.Function]): Unit = js.native
 
   /** symbol outline   */
   def outline(outline: Outline): Unit = js.native
@@ -725,8 +688,6 @@ object MS extends js.Object {
   val ms: this.type = js.native
 
   def addSIDCicons(function: js.Function, `type`: String): this.type = js.native
-
-  def addLabelOverrides(function: js.Function, `type`: String): this.type = js.native
 
   def addSymbolPart(part: SymbolPart): this.type = js.native
 
