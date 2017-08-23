@@ -4,7 +4,7 @@ Change Log
 ## changes in 1.3.1 -SNAPSHOT 
 
 
-## changes in 1.3.0 -SNAPSHOT 
+## changes in 1.3.0 
 compatible with milsymbol.js-1.3.0 
 
 * changed SymbolOptions into SymbolOptions and SymbolStyle objects that derive from SymbolOption
