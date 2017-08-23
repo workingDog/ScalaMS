@@ -313,57 +313,20 @@ trait Properties extends js.Object {
 }
 
 /**
-  * the Symbol options
+  * general Symbol option
   */
 @ScalaJSDefined
-trait SymbolOptions extends js.Object {
+trait SymbolOption extends js.Object
+
+/**
+  * the Symbol object options
+  */
+@ScalaJSDefined
+trait SymbolOptions extends SymbolOption {
 
   /** SIDC/sidc of the symbol */
   val SIDC: js.UndefOr[String] = js.undefined
   val sidc: js.UndefOr[String] = js.undefined
-
-  /** This will be used for texts in the text fields surrounding the symbol.
-    * It is a color that is either a keyword or a numerical RGB specification. */
-  val infoColor: js.UndefOr[String] = js.undefined
-
-  /** Overrides the global Headquarters staf length */
-  val hqStafLength: js.UndefOr[Double] = js.undefined
-
-  /** Should your symbol be filled with color. */
-  val fill: js.UndefOr[Boolean] = js.undefined
-
-  /** Should your symbol have a frame. All symbols support to be unframed, not just the ones specified in 2525B. */
-  val frame: js.UndefOr[Boolean] = js.undefined
-
-  /** Should your symbol have an icon. */
-  val icon: js.UndefOr[Boolean] = js.undefined
-
-  /** 2525C specifics purple as an optional color for civilian symbols. Of course we like this color so we set it as valault.  */
-  val civilianColor: js.UndefOr[Boolean] = js.undefined
-
-  /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
-  val infoFields: js.UndefOr[Boolean] = js.undefined
-
-  /** MIL-STD-2525D lets you choose between MEDAL and alternate MEDAL icons for mine warefare symbols, the default in milsymbol is using MEDAL icons, but you can change this using setting this property to true. */
-  val alternateMedal: js.UndefOr[Boolean] = js.undefined
-
-  /** The opacity of the symbol fill color. */
-  val fillOpacity: js.UndefOr[Double] = js.undefined
-
-  /** The stroke width of the symbol. */
-  val strokeWidth: js.UndefOr[Double] = js.undefined
-
-  /** The L value for your symbol, where the L value is the width of the icon octagon.  */
-  val size: js.UndefOr[Double] = js.undefined
-
-  /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
-  val colorMode: js.UndefOr[ColorMode] = js.undefined
-
-  /** A color that is either a keyword or a numerical RGB specification. If you set this the symbol will be monochrome and unfilled using the color provided. */
-  val monoColor: js.UndefOr[String] = js.undefined
-
-  /** The size of the text fields surrounding the symbol. */
-  val infoSize: js.UndefOr[Double] = js.undefined
 
   // information section
   /** FieldID C -
@@ -453,6 +416,57 @@ trait SymbolOptions extends js.Object {
     * Example: "Hawk" for Hawk SAM system. */
   val commonIdentifier: js.UndefOr[String] = js.undefined
 
+}
+
+/**
+  * the Symbol style option
+  */
+@ScalaJSDefined
+trait SymbolStyle extends SymbolOption {
+
+  /** This will be used for texts in the text fields surrounding the symbol.
+    * It is a color that is either a keyword or a numerical RGB specification. */
+  val infoColor: js.UndefOr[String] = js.undefined
+
+  /** Overrides the global Headquarters staf length */
+  val hqStafLength: js.UndefOr[Double] = js.undefined
+
+  /** Should your symbol be filled with color. */
+  val fill: js.UndefOr[Boolean] = js.undefined
+
+  /** Should your symbol have a frame. All symbols support to be unframed, not just the ones specified in 2525B. */
+  val frame: js.UndefOr[Boolean] = js.undefined
+
+  /** Should your symbol have an icon. */
+  val icon: js.UndefOr[Boolean] = js.undefined
+
+  /** 2525C specifics purple as an optional color for civilian symbols. Of course we like this color so we set it as valault.  */
+  val civilianColor: js.UndefOr[Boolean] = js.undefined
+
+  /** If you have set some text fields and direction but don't want them to be displayed you can set infoFields to false. This makes it possible to initiate the object with all information you got but not display it. */
+  val infoFields: js.UndefOr[Boolean] = js.undefined
+
+  /** MIL-STD-2525D lets you choose between MEDAL and alternate MEDAL icons for mine warefare symbols, the default in milsymbol is using MEDAL icons, but you can change this using setting this property to true. */
+  val alternateMedal: js.UndefOr[Boolean] = js.undefined
+
+  /** The opacity of the symbol fill color. */
+  val fillOpacity: js.UndefOr[Double] = js.undefined
+
+  /** The stroke width of the symbol. */
+  val strokeWidth: js.UndefOr[Double] = js.undefined
+
+  /** The L value for your symbol, where the L value is the width of the icon octagon.  */
+  val size: js.UndefOr[Double] = js.undefined
+
+  /** This is the option for setting what Color object to use for the fill of the symbols. You can use MS.colorMode to create a new color mode, or MS.getColorMode to get an existing color mode. */
+  val colorMode: js.UndefOr[ColorMode] = js.undefined
+
+  /** A color that is either a keyword or a numerical RGB specification. If you set this the symbol will be monochrome and unfilled using the color provided. */
+  val monoColor: js.UndefOr[String] = js.undefined
+
+  /** The size of the text fields surrounding the symbol. */
+  val infoSize: js.UndefOr[Double] = js.undefined
+
   /** symbol outline width */
   val outlineWidth: js.UndefOr[Double] = js.undefined
 
@@ -465,14 +479,15 @@ trait SymbolOptions extends js.Object {
   * Symbol object with a SIDC, and optional symbol options
   * The SIDC is a complete, letter based or number based, or at least the first 3 chars of a letter based SIDC.
   */
-@JSGlobal("ms.symbol")
+@JSGlobal("ms.Symbol")
 @js.native
 class Symbol protected() extends js.Object {
-  /** constructor */
-  def this(SIDC: String, options: SymbolOptions = ???) = this()
 
   /** constructor */
-  def this(options: SymbolOptions) = this()
+  def this(SIDC: String, options: SymbolOption = ???) = this()
+
+  /** constructor */
+  def this(options: SymbolOption) = this()
 
   /** returns a boolean if it was possible to find the symbol icon for the provided SIDC. */
   def isValid(): Boolean = js.native
@@ -489,8 +504,14 @@ class Symbol protected() extends js.Object {
   def getColors(): SymbolColor = js.native
 
   /** If you want to change the options of an existing symbol at the same time as you want to request it as a new marker,
-    * you can use setOptions(<Symbol options> options?) to update the options. */
-  def setOptions(options: SymbolOptions): Symbol = js.native
+    * you can use setOptions(...) to update the options, including SymbolStyle. */
+  def setOptions(options: SymbolOption): Symbol = js.native
+
+  /** This will return the options that are set on the symbol. */
+  def getOptions(includeStyle: Option[Boolean] = None): SymbolOption = js.native
+
+  /** This will return the styles options that are set on the symbol. */
+  def getStyle(): SymbolStyle = js.native
 
   /** Parses the XML and returns a DOM element. */
   def asDOM(): dom.Element = js.native
@@ -560,7 +581,7 @@ class Symbol protected() extends js.Object {
   // information fields options
   /** FieldID C -
     * A text modifier in an equipment symbol that identifies the number of items present. 9 Characters  */
-   var quantity: String = js.native
+  var quantity: String = js.native
   /** FieldID F -
     * A text modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced. 3 Characters */
   var reinforcedReduced: String = js.native
@@ -635,7 +656,7 @@ class Symbol protected() extends js.Object {
 object MS extends js.Object {
 
   /** Get the current version of milsymbol */
-   val version: String = js.native
+  val version: String = js.native
 
   /** "2525" or "APP6" */
   def setStandard(symbology: String): Unit = js.native
